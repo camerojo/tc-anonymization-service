@@ -20,6 +20,11 @@ public class AnonymizationServiceImpl implements AnonymizationService{
     @Override
     public AnonCandidate anonymize(Candidate candidate) throws JsonProcessingException {
         String json = mapper.writeValueAsString(candidate);
+        return anonymize(json);
+    }
+
+    @Override
+    public AnonCandidate anonymize(String json) throws JsonProcessingException {
         return mapper.readValue(json, AnonCandidate.class);
     }
 }
