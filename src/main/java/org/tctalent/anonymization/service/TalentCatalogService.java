@@ -4,8 +4,6 @@
 
 package org.tctalent.anonymization.service;
 
-import org.springframework.data.domain.Page;
-
 /**
  * Access the main Talent Catalog Server
  *
@@ -20,5 +18,5 @@ public interface TalentCatalogService {
     * @param pageNumber Page number
     * @return Page of candidates encoded as JSON strings
     */
-   Page<String> fetchPageOfCandidateDataAsJson(int pageNumber);
+   String fetchPageOfCandidateDataAsJson(int pageNumber);
 }
