@@ -4,6 +4,8 @@
 
 package org.tctalent.anonymization.service;
 
+import org.springframework.web.client.RestClientException;
+
 /**
  * Access the main Talent Catalog Server
  *
@@ -17,6 +19,7 @@ public interface TalentCatalogService {
     * Uses a default TC search request.
     * @param pageNumber Page number
     * @return Page of candidates encoded as JSON strings
+    * @throws RestClientException if errors are returned (eg unauthorized)
     */
-   String fetchPageOfCandidateDataAsJson(int pageNumber);
+   String fetchPageOfCandidateDataAsJson(int pageNumber) throws RestClientException;
 }
