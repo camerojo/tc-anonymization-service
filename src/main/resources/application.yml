@@ -1,3 +1,5 @@
 spring:
   application:
     name: tc-anonymization-service
+server:
+  port: 8081
