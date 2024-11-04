@@ -19,7 +19,7 @@ public class TalentCatalogServiceImpl implements TalentCatalogService {
     private JwtAuthenticationResponse credentials;
 
     private final RestClient restClient;
-    private long savedSearchId = 123; //TODO JC Config
+    private long savedSearchId = 22; //TODO JC Config - need to pass in real Search id
     private String apiUrl = "http://localhost:8080/api/admin"; //TODO config
 
     public TalentCatalogServiceImpl(RestClient.Builder restClientBuilder) {
@@ -46,7 +46,7 @@ public class TalentCatalogServiceImpl implements TalentCatalogService {
         request.setPageSize(100);
         request.setPageNumber(pageNumber);
         return this.restClient.post()
-            .uri("/" + savedSearchId + "/searchPaged")
+            .uri("/saved-search-candidate/" + savedSearchId + "/search-paged")
             .contentType(APPLICATION_JSON)
             .header(HttpHeaders.AUTHORIZATION,
                 credentials.getTokenType() + " " + credentials.getAccessToken())
