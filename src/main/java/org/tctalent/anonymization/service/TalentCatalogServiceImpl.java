@@ -9,10 +9,13 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
+import org.tctalent.server.request.LoginRequest;
 import org.tctalent.server.request.candidate.SavedSearchGetRequest;
+import org.tctalent.server.response.JwtAuthenticationResponse;
 
 @Service
 public class TalentCatalogServiceImpl implements TalentCatalogService {
+    private JwtAuthenticationResponse credentials;
 
     private final RestClient restClient;
     private long savedSearchId = 123; //TODO JC Config
@@ -23,6 +26,20 @@ public class TalentCatalogServiceImpl implements TalentCatalogService {
     }
 
     @Override
+    public void login() throws RestClientException {
+        LoginRequest request = new LoginRequest();
+        request.setUsername("appAnonDatabaseService");
+        request.setPassword("12345678");
+
+        credentials = this.restClient.post()
+            .uri("/auth/login")
+            .contentType(APPLICATION_JSON)
+            .body(request)
+            .retrieve()
+            .body(JwtAuthenticationResponse.class);
+    }
+
+    @Override
     public String fetchPageOfCandidateDataAsJson(int pageNumber) throws RestClientException {
         SavedSearchGetRequest request = new SavedSearchGetRequest();
         request.setPageSize(100);
@@ -30,8 +47,14 @@ public class TalentCatalogServiceImpl implements TalentCatalogService {
         return this.restClient.post()
             .uri("/" + savedSearchId + "/searchPaged")
             .contentType(APPLICATION_JSON)
+            .header(credentials.getTokenType(), credentials.getAccessToken())
             .body(request)
             .retrieve()
             .body(String.class);
+    }
+
+    @Override
+    public JwtAuthenticationResponse getCurrentCredentials() {
+        return credentials;
     }
 }

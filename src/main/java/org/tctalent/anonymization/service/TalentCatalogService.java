@@ -5,6 +5,7 @@
 package org.tctalent.anonymization.service;
 
 import org.springframework.web.client.RestClientException;
+import org.tctalent.server.response.JwtAuthenticationResponse;
 
 /**
  * Access the main Talent Catalog Server
@@ -12,6 +13,12 @@ import org.springframework.web.client.RestClientException;
  * @author John Cameron
  */
 public interface TalentCatalogService {
+
+   /**
+    * Logs in to TC server with app password
+    * @throws RestClientException If login failed
+    */
+   void login() throws RestClientException;
 
    /**
     * Returns the given page number of candidate data.
@@ -22,4 +29,7 @@ public interface TalentCatalogService {
     * @throws RestClientException if errors are returned (eg unauthorized)
     */
    String fetchPageOfCandidateDataAsJson(int pageNumber) throws RestClientException;
+
+   //TODO JC
+   JwtAuthenticationResponse getCurrentCredentials();
 }

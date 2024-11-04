@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
+import org.tctalent.server.response.JwtAuthenticationResponse;
 
 @SpringBootTest
 class TalentCatalogServiceImplTest {
@@ -19,6 +20,17 @@ class TalentCatalogServiceImplTest {
     }
 
     @Test
+    void login() {
+        try {
+            tcService.login();
+            JwtAuthenticationResponse currentCredentials = tcService.getCurrentCredentials();
+            assertNotNull(currentCredentials);
+        } catch (RestClientException ex) {
+            fail(ex);
+        }
+    }
+
+    @Test
     void fetchPageOfCandidateDataAsJson() {
         try {
             String pageOfDataAsJson = tcService.fetchPageOfCandidateDataAsJson(0);
@@ -27,4 +39,21 @@ class TalentCatalogServiceImplTest {
             fail(ex);
         }
     }
+
+    @Test
+    void loginAndFetchPageOfCandidateDataAsJson() {
+        try {
+            tcService.login();
+            JwtAuthenticationResponse currentCredentials = tcService.getCurrentCredentials();
+            assertNotNull(currentCredentials);
+            
+            String pageOfDataAsJson = tcService.fetchPageOfCandidateDataAsJson(0);
+            assertNotNull(pageOfDataAsJson);
+        } catch (RestClientException ex) {
+            fail(ex);
+        }
+    }
+
+
+
 }
