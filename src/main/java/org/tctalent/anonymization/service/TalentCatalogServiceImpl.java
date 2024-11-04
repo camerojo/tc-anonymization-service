@@ -6,6 +6,7 @@ package org.tctalent.anonymization.service;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
@@ -47,7 +48,8 @@ public class TalentCatalogServiceImpl implements TalentCatalogService {
         return this.restClient.post()
             .uri("/" + savedSearchId + "/searchPaged")
             .contentType(APPLICATION_JSON)
-            .header(credentials.getTokenType(), credentials.getAccessToken())
+            .header(HttpHeaders.AUTHORIZATION,
+                credentials.getTokenType() + " " + credentials.getAccessToken())
             .body(request)
             .retrieve()
             .body(String.class);
