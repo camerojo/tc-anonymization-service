@@ -19,7 +19,7 @@ public class TalentCatalogServiceImpl implements TalentCatalogService {
     private JwtAuthenticationResponse credentials;
 
     private final RestClient restClient;
-    private long savedSearchId = 22; //TODO JC Config - need to pass in real Search id
+    private long savedSearchId = 408; //TODO JC Config - need to pass in real Search id
     private String apiUrl = "http://localhost:8080/api/admin"; //TODO config
 
     public TalentCatalogServiceImpl(RestClient.Builder restClientBuilder) {

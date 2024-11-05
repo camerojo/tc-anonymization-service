@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Should come from OpenID
+ * Should come from OpenAPI
  *
  * @author John Cameron
  */
