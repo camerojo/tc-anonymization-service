@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.scheduling.TaskScheduler;
 import org.springframework.stereotype.Service;
 import org.tctalent.anonymization.model.AnonCandidate;
+import org.tctalent.server.repository.AnonCandidateRepository;
 import org.tctalent.util.background.BackProcessor;
 import org.tctalent.util.background.BackRunner;
 import org.tctalent.util.background.IdContext;
@@ -27,6 +28,8 @@ public class PopulateDatabaseServiceImpl implements PopulateDatabaseService {
     private final AnonymizationService anonymizationService;
     private final TalentCatalogService tcService;
     private final TaskScheduler taskScheduler;
+    private final AnonCandidateRepository anonCandidateRepository;
+
 
     @Override
     public void populateDatabase(int percentageCPU) {
@@ -83,7 +86,6 @@ public class PopulateDatabaseServiceImpl implements PopulateDatabaseService {
     }
 
     private void saveCandidates(List<AnonCandidate> content) {
-        //TODO JC Implement saveCandidates
-        throw new UnsupportedOperationException("saveCandidates not implemented");
+        anonCandidateRepository.saveAll(content);
     }
 }
