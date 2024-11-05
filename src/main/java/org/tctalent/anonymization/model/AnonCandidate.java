@@ -5,6 +5,7 @@ import lombok.Setter;
 
 /**
  * Model generated from OpenAPI
+ * //TODO JC Make this more realistic
  */
 @Getter
 @Setter
