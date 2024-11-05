@@ -1,17 +1,18 @@
-package org.tctalent.anonymization;
+package org.tctalent;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.tctalent.anonymization.service.TalentCatalogService;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.tctalent.server.repository.AnonCandidateRepository;
 
 @SpringBootApplication
+@EnableScheduling
 public class TcAnonymizationServiceApplication implements CommandLineRunner {
-    private final TalentCatalogService talentCatalogService;
 
-    public TcAnonymizationServiceApplication(TalentCatalogService talentCatalogService) {
-        this.talentCatalogService = talentCatalogService;
-    }
+    @Autowired
+    AnonCandidateRepository anonCandidateRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(TcAnonymizationServiceApplication.class, args);
@@ -23,5 +24,7 @@ public class TcAnonymizationServiceApplication implements CommandLineRunner {
 //        System.out.println(s);
         //TODO JC Trigger login to server (need app login - ie no MFA)
         //TODO JC Trigger query of all candidates
+
+
     }
 }

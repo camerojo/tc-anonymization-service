@@ -8,12 +8,13 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
-import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
 import org.tctalent.anonymization.model.AnonCandidate;
+import org.tctalent.server.repository.AnonCandidateRepository;
 import org.tctalent.server.response.JwtAuthenticationResponse;
 import org.tctalent.util.background.BackProcessor;
 import org.tctalent.util.background.BackRunner;
@@ -21,13 +22,17 @@ import org.tctalent.util.background.IdContext;
 
 @SpringBootTest
 class TalentCatalogServiceImplTest {
+    @Autowired
     TalentCatalogServiceImpl tcService;
+
+    @Autowired
     AnonymizationService anonymizationService;
+
+    @Autowired
+    AnonCandidateRepository anonCandidateRepository;
 
     @BeforeEach
     void setUp() {
-        tcService = new TalentCatalogServiceImpl(RestClient.builder());
-        anonymizationService = new AnonymizationServiceImpl();
     }
 
     @Test
@@ -68,6 +73,9 @@ class TalentCatalogServiceImplTest {
                 .map(ca -> Long.toString(ca.getCandidateNumber()))
                 .collect(Collectors.joining(","));
             System.out.println("Received numbers: " + collect);
+
+            anonCandidateRepository.saveAll(anonCandidates);
+
         } catch (RestClientException ex) {
             fail(ex);
         } catch (JsonProcessingException e) {
