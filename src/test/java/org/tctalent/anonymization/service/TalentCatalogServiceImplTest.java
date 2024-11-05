@@ -75,6 +75,10 @@ class TalentCatalogServiceImplTest {
             System.out.println("Received numbers: " + collect);
 
             anonCandidateRepository.saveAll(anonCandidates);
+            for (AnonCandidate customer : anonCandidateRepository.findAll()) {
+                System.out.println(customer);
+            }
+
 
         } catch (RestClientException ex) {
             fail(ex);
