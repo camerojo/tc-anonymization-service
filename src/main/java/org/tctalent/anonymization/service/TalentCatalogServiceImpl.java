@@ -7,7 +7,9 @@ package org.tctalent.anonymization.service;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
 import org.tctalent.server.request.LoginRequest;
@@ -54,9 +56,11 @@ public class TalentCatalogServiceImpl implements TalentCatalogService {
                 .body(request)
                 .retrieve()
                 .body(String.class);
-        } catch (RestClientException e) {
-            //TODO JC Check for logged out
-            credentials = null;
+        } catch (HttpClientErrorException e) {
+            //Check for logged out
+            if (e.getStatusCode().isSameCodeAs(HttpStatus.UNAUTHORIZED)) {
+                credentials = null;
+            }
             throw e;
         }
     }
