@@ -1,6 +1,7 @@
 package org.tctalent.anonymization.service;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -15,7 +16,6 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.web.client.RestClientException;
 import org.tctalent.anonymization.model.AnonCandidate;
 import org.tctalent.server.repository.AnonCandidateRepository;
-import org.tctalent.server.response.JwtAuthenticationResponse;
 import org.tctalent.util.background.BackProcessor;
 import org.tctalent.util.background.BackRunner;
 import org.tctalent.util.background.IdContext;
@@ -39,8 +39,7 @@ class TalentCatalogServiceImplTest {
     void login() {
         try {
             tcService.login();
-            JwtAuthenticationResponse currentCredentials = tcService.getCurrentCredentials();
-            assertNotNull(currentCredentials);
+            assertTrue(tcService.isLoggedIn());
         } catch (RestClientException ex) {
             fail(ex);
         }
@@ -60,8 +59,7 @@ class TalentCatalogServiceImplTest {
     void loginAndFetchPageOfCandidateDataAsJson() {
         try {
             tcService.login();
-            JwtAuthenticationResponse currentCredentials = tcService.getCurrentCredentials();
-            assertNotNull(currentCredentials);
+            assertTrue(tcService.isLoggedIn());
 
             String pageOfDataAsJson = tcService.fetchPageOfCandidateDataAsJson(0);
             assertNotNull(pageOfDataAsJson);
@@ -91,8 +89,7 @@ class TalentCatalogServiceImplTest {
     void loginAndFetchFirstFewPagesOfCandidateData() {
         try {
             tcService.login();
-            JwtAuthenticationResponse currentCredentials = tcService.getCurrentCredentials();
-            assertNotNull(currentCredentials);
+            assertTrue(tcService.isLoggedIn());
 
             BackRunner<IdContext> backRunner;
             BackProcessor<IdContext> backProcessor;

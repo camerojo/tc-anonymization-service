@@ -5,7 +5,6 @@
 package org.tctalent.anonymization.service;
 
 import org.springframework.web.client.RestClientException;
-import org.tctalent.server.response.JwtAuthenticationResponse;
 
 /**
  * Access the main Talent Catalog Server
@@ -13,6 +12,12 @@ import org.tctalent.server.response.JwtAuthenticationResponse;
  * @author John Cameron
  */
 public interface TalentCatalogService {
+
+   /**
+    * True if we are currently logged in to the TC.
+    * @return True if logged in
+    */
+   boolean isLoggedIn();
 
    /**
     * Logs in to TC server with app password
@@ -29,7 +34,4 @@ public interface TalentCatalogService {
     * @throws RestClientException if errors are returned (eg unauthorized)
     */
    String fetchPageOfCandidateDataAsJson(int pageNumber) throws RestClientException;
-
-   //TODO JC
-   JwtAuthenticationResponse getCurrentCredentials();
 }

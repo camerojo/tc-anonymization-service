@@ -41,22 +41,28 @@ public class TalentCatalogServiceImpl implements TalentCatalogService {
     }
 
     @Override
-    public String fetchPageOfCandidateDataAsJson(int pageNumber) throws RestClientException {
-        SavedSearchGetRequest request = new SavedSearchGetRequest();
-        request.setPageSize(100);
-        request.setPageNumber(pageNumber);
-        return this.restClient.post()
-            .uri("/saved-search-candidate/" + savedSearchId + "/search-paged")
-            .contentType(APPLICATION_JSON)
-            .header(HttpHeaders.AUTHORIZATION,
-                credentials.getTokenType() + " " + credentials.getAccessToken())
-            .body(request)
-            .retrieve()
-            .body(String.class);
+    public String fetchPageOfCandidateDataAsJson(int pageNumber) {
+        try {
+            SavedSearchGetRequest request = new SavedSearchGetRequest();
+            request.setPageSize(100);
+            request.setPageNumber(pageNumber);
+            return this.restClient.post()
+                .uri("/saved-search-candidate/" + savedSearchId + "/search-paged")
+                .contentType(APPLICATION_JSON)
+                .header(HttpHeaders.AUTHORIZATION,
+                    credentials.getTokenType() + " " + credentials.getAccessToken())
+                .body(request)
+                .retrieve()
+                .body(String.class);
+        } catch (RestClientException e) {
+            //TODO JC Check for logged out
+            credentials = null;
+            throw e;
+        }
     }
 
     @Override
-    public JwtAuthenticationResponse getCurrentCredentials() {
-        return credentials;
+    public boolean isLoggedIn() {
+        return credentials != null;
     }
 }
