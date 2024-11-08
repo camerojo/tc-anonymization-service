@@ -38,6 +38,7 @@ public class PopulateDatabaseServiceImpl implements PopulateDatabaseService {
     @Override
     public void populateDatabase(int percentageCPU) {
         //Clear database to start
+        //TODO JC This may not necessary - see if updates work as expected
         anonCandidateRepository.deleteAll();
 
         //Cancel any existing populate tasks (guarding against calling this method twice)
