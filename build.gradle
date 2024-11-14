@@ -1,3 +1,5 @@
+//todo For warnings see https://stackoverflow.com/questions/32905270/intellij-idea-and-gradle-cannot-be-applied-to-groovy-lang-closure
+
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.3.5'
@@ -25,6 +27,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
