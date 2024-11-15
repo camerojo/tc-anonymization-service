@@ -1,7 +1,10 @@
+import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
+
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.3.5'
     id 'io.spring.dependency-management' version '1.1.6'
+    id 'org.openapi.generator' version '7.8.0'
 }
 
 group = 'org.tctalent'
@@ -29,6 +32,35 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.withType(GenerateTask).configureEach {
+    outputs.upToDateWhen { false }
+    outputs.cacheIf { false }
+}
+
+openApiValidate {
+    inputSpec.set(file('../tc-anonymization-service-spec/opanapi.yaml').absolutePath)
+    recommend.set(true)
+}
+
+openApiGenerate {
+    generatorName.set("spring")
+    inputSpec.set(file('../tc-anonymization-service-spec/opanapi.yaml').absolutePath)
+    outputDir.set("$buildDir/generated")
+    apiPackage.set("org.tctalent.api")
+    modelPackage.set("org.tctalent.model")
+    configOptions.put("dateLibrary", "java8")
+    configOptions.put("openApiNullable", "false")
+    library.set("spring-boot")
+    globalProperties.set([
+            modelDocs: "false",
+            apiDocs: "false",
+            apiTests: "false",
+            modelTests: "false",
+            suppotingFiles: "false",
+            generateAliasAsModel: "false",
+    ])
 }
 
 tasks.named('test') {
