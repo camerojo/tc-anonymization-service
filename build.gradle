@@ -32,6 +32,14 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // For OpenAPI 3.0 code generation
+    implementation 'io.swagger.core.v3:swagger-annotations:2.2.8'
+    implementation 'io.swagger.core.v3:swagger-models:2.2.8'
+    implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
+
+    // Java 8 date/time handling with Jackson
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
 }
 
 tasks.withType(GenerateTask).configureEach {
@@ -45,24 +53,46 @@ openApiValidate {
 }
 
 openApiGenerate {
+    verbose.set(true)
     generatorName.set("spring")
     inputSpec.set(file('../tc-anonymization-service-spec/opanapi.yaml').absolutePath)
     outputDir.set("$buildDir/generated")
-    apiPackage.set("org.tctalent.api")
-    modelPackage.set("org.tctalent.model")
+    apiPackage.set("org.tctalent.anonymization.api")
+    modelPackage.set("org.tctalent.anonymization.model")
     configOptions.put("dateLibrary", "java8")
     configOptions.put("openApiNullable", "false")
+    configOptions.put("useJakartaEe", "true")
+    configOptions.put("useLombokAnnotations", "true")
+    configOptions.put("additionalModelTypeAnnotations", "@lombok.Getter @lombok.Setter @lombok.Builder @lombok.AllArgsConstructor")
     library.set("spring-boot")
     globalProperties.set([
             modelDocs: "false",
             apiDocs: "false",
             apiTests: "false",
             modelTests: "false",
-            suppotingFiles: "false",
-            generateAliasAsModel: "false",
+            generateAliasAsModel: "true",
     ])
+}
+
+tasks.named("openApiGenerate").configure {
+    doLast {
+        def generatedMainClass = file("$buildDir/generated/src/main/java/org/openapitools/OpenApiGeneratorApplication.java")
+        if (generatedMainClass.exists()) {
+            generatedMainClass.delete()
+        }
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir "$buildDir/generated/src/main/java"
+        }
+    }
 }
 
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+compileJava.dependsOn("openApiGenerate")
