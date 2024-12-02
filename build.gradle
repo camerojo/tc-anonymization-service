@@ -64,7 +64,8 @@ openApiGenerate {
     configOptions.put("openApiNullable", "false")
     configOptions.put("useJakartaEe", "true")
     configOptions.put("useLombokAnnotations", "true")
-    configOptions.put("additionalModelTypeAnnotations", "@lombok.Getter @lombok.Setter @lombok.Builder @lombok.AllArgsConstructor")
+    configOptions.put("additionalModelTypeAnnotations", "@lombok.Getter @lombok.Setter")
+    configOptions.put("generateBuilders", "true")
     library.set("spring-boot")
     globalProperties.set([
             modelDocs: "false",
