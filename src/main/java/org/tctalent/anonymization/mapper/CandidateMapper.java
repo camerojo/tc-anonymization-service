@@ -10,13 +10,13 @@ public class CandidateMapper {
   public static Candidate toModel(CandidateEntity entity) {
     return Candidate.builder()
         .id(entity.getId()) // todo fix this - decide which IDs to use and which mappings to set up
-        .gender(entity.getGender()) // todo just for testing, need to update with full mappings
-        .status(entity.getStatus())
-        .countryId(entity.getCountryId())
+//        .gender(entity.getGender()) // todo just for testing, need to update with full mappings
+//        .status(entity.getStatus())
+//        .countryId(entity.getCountryId())
         .yearOfArrival(entity.getYearOfArrival())
-        .nationalityOldId(entity.getNationalityOldId())
-        .unhcrStatus(entity.getUnhcrStatus())
-        .maxEducationLevelId(entity.getMaxEducationLevelId())
+//        .nationalityOldId(entity.getNationalityOldId())
+//        .unhcrStatus(entity.getUnhcrStatus())
+//        .maxEducationLevelId(entity.getMaxEducationLevelId())
         .createdDate(entity.getCreatedDate())
         .updatedDate(entity.getUpdatedDate())
         .build();
