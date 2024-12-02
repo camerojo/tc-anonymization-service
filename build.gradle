@@ -29,6 +29,7 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'com.h2database:h2' // Todo - In-memory database - just for prototyping
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -54,7 +55,6 @@ openApiValidate {
 }
 
 openApiGenerate {
-    verbose.set(true)
     generatorName.set("spring")
     inputSpec.set(file('../tc-anonymization-service-spec/opanapi.yaml').absolutePath)
     outputDir.set("$buildDir/generated")
