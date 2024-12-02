@@ -50,13 +50,13 @@ tasks.withType(GenerateTask).configureEach {
 }
 
 openApiValidate {
-    inputSpec.set(file('../tc-anonymization-service-spec/opanapi.yaml').absolutePath)
+    inputSpec.set(file('../tc-anonymization-service-spec/openapi.yaml').absolutePath)
     recommend.set(true)
 }
 
 openApiGenerate {
     generatorName.set("spring")
-    inputSpec.set(file('../tc-anonymization-service-spec/opanapi.yaml').absolutePath)
+    inputSpec.set(file('../tc-anonymization-service-spec/openapi.yaml').absolutePath)
     outputDir.set("$buildDir/generated")
     apiPackage.set("org.tctalent.anonymization.api")
     modelPackage.set("org.tctalent.anonymization.model")
