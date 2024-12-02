@@ -7,7 +7,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
-import java.util.List;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -42,10 +41,10 @@ class AnonymizationServiceImplTest {
             .contact("+1-234-567-890")
             .email("johndoe@example.com")
             .address("123 Main St, Springfield, IL")
-            .dateOfBirth(LocalDate.parse("1985-06-15"))                           // Date of birth in yyyy-MM-dd format
-            .skills(List.of("Java", "Python", "AWS"))
-            .experience(5.5f)
-            .dateCreated(OffsetDateTime.now())
+            .dateOfBirth(LocalDate.parse("1985-06-15"))
+            .nationalityOldId(101L)
+            .nationalityId(102L)
+            .createdDate(OffsetDateTime.now())
             .build();
 
         Candidate candidate = service.anonymize(identifiableCandidate);
