@@ -1,3 +1,65 @@
 spring:
   application:
     name: tc-anonymization-service
+
+  jpa:
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none # Disable DDL execution
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect # Set the Hibernate dialect to Postgres
+        validate: false # Optional: Disable schema validation if necessary
+        order_by.default_null_ordering: last
+        temp:
+          use_jdbc_metadata_defaults: false
+
+  # Postgres
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/tctalent
+    username: tctalent
+    password: tctalent
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 10
+      max-lifetime: 1800000 # 30 minutes
+
+# H2 - for prototyping
+#  datasource:
+#    url: jdbc:h2:mem:testdb
+#    driver-class-name: org.h2.Driver
+#    username: sa
+#    password:
+#  jpa:
+#    database-platform: org.hibernate.dialect.H2Dialect
+
+
+# for prototyping with TC entities
+jwt:
+  secret: ${JWT_SECRET:RX4bokONoSrrNLM6CMTij9iG9jHFG5VfsN1zIi9UqDGK3pQXASG7xMEga2VrAj3P1SNmywqnWRoTXnltuJ5l+A==}
+  # This equates to 24 hours in milliseconds
+  expirationInMs: 86400000
+
+email:
+  type: ${EMAIL_TYPE:STUB}
+  host: ${EMAIL_HOST:smtp.gmail.com}
+  port: 587
+  user: ${EMAIL_USER:noreply@talentcatalog.net}
+
+  # For dev this could be set in tc-secrets - but only needed if email.type is not STUB, which it
+  # normally will be in dev.
+  password: ${EMAIL_PASSWORD:}
+  authenticated: true
+  alertEmail: alert@talentcatalog.net
+  defaultEmail: ${EMAIL_DEFAULTEMAIL:noreply@talentcatalog.net}
+  testOverrideEmail: ${EMAIL_TESTOVERRIDEEMAIL:}
+
+web:
+  # Used in EmailHelper
+  portal: https://tctalent.org/candidate-portal
+
+  # This is used in EmailHelper
+  # and SiteRedirectController to redirect urls from the Version 1 TC to the Version 2 TC
+  admin: https://tctalent.org/admin-portal
