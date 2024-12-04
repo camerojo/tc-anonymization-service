@@ -12,7 +12,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.tctalent.anonymization.config.JacksonConfig;
 import org.tctalent.anonymization.model.Candidate;
+import org.tctalent.anonymization.model.Country;
 import org.tctalent.anonymization.model.IdentifiableCandidate;
+import org.tctalent.anonymization.model.Status;
+import org.tctalent.anonymization.model.User;
 
 /**
  * Test
@@ -35,15 +38,25 @@ class AnonymizationServiceImplTest {
 
         UUID uuid = UUID.randomUUID();
 
+        User user = User.builder()
+            .firstName("John")
+            .lastName("Doe")
+            .email("johndoe@example.com")
+            .build();
+
+        Country nationality = Country.builder()
+            .isoCode("GB")
+            .name("United Kingdon")
+            .status(Status.active)
+            .build();
+
         IdentifiableCandidate identifiableCandidate = IdentifiableCandidate.builder()
             .id(uuid)
-            .name("John Doe")
-            .contact("+1-234-567-890")
-            .email("johndoe@example.com")
-            .address("123 Main St, Springfield, IL")
-            .dateOfBirth(LocalDate.parse("1985-06-15"))
-            .nationalityOldId(101L)
-            .nationalityId(102L)
+            .user(user)
+            .phone("+1-234-567-890")
+            .address1("123 Main St, Springfield, IL")
+            .dob(LocalDate.parse("1985-06-15"))
+            .nationality(nationality)
             .createdDate(OffsetDateTime.now())
             .build();
 
