@@ -15,21 +15,22 @@ import org.tctalent.anonymization.repository.CandidateRepository;
 public class CandidateServiceImpl implements CandidateService {
 
   private final CandidateRepository candidateRepository;
+  private final CandidateMapper candidateMapper;
 
   @Override
   public CandidatePage findAll(Pageable pageable) {
     Page<Candidate> candidatePage =  candidateRepository
         .findAll(pageable)
-        .map(CandidateMapper::toModel);
+        .map(candidateMapper::toModel);
 
-    return CandidateMapper.toCandidatePage(candidatePage);
+    return candidateMapper.toCandidatePage(candidatePage);
   }
 
   @Override
   public Candidate findById(UUID id) {
     return candidateRepository
         .findById(id)
-        .map(CandidateMapper::toModel)
+        .map(candidateMapper::toModel)
         .orElseThrow(() -> new RuntimeException("Candidate not found")); // todo better exceptions
   }
 
