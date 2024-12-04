@@ -1,5 +1,6 @@
 import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
 
+// Gradle plugins required for the build
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.3.5'
@@ -7,53 +8,86 @@ plugins {
     id 'org.openapi.generator' version '7.8.0'
 }
 
+// Project metadata: Group and version details
 group = 'org.tctalent'
 version = '0.0.1-SNAPSHOT'
 
+// Java toolchain configuration
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
     }
 }
 
+// Dependency configurations: Manage custom configurations
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
 }
 
+// Repositories: Define where dependencies should be resolved from
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    runtimeOnly 'com.h2database:h2' // Todo - In-memory database - just for prototyping
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+// Project-wide variables: Manage dependency versions
+ext {
+    mapstructVersion = "1.6.3"
+    lombokMapstructBindingVersion = "0.2.0"
+}
 
-    // For OpenAPI 3.0 code generation
-    implementation 'io.swagger.core.v3:swagger-annotations:2.2.8'
-    implementation 'io.swagger.core.v3:swagger-models:2.2.8'
-    implementation 'jakarta.validation:jakarta.validation-api:3.0.2'
+// Project dependencies
+dependencies {
+    // Spring Boot starters
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+
+    // In-memory database for prototyping
+    runtimeOnly "com.h2database:h2" // Todo - In-memory database - just for prototyping
+
+    // PostgresSQL driver
+    implementation "org.postgresql:postgresql"
+
+    // Lombok
+    compileOnly "org.projectlombok:lombok"
+    annotationProcessor "org.projectlombok:lombok"
+
+    // Testing dependencies
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+
+    // Additional libraries required by imported TC entities - todo check dependencies for curated versions or move to ext
+    implementation "org.apache.commons:commons-lang3"
+    implementation "commons-beanutils:commons-beanutils:1.9.4" // todo - move version to ext - not a spring boot curated dep
+    implementation "org.jsoup:jsoup:1.15.4"
+    implementation "org.springframework.boot:spring-boot-starter-thymeleaf"
+    implementation "org.springframework.boot:spring-boot-starter-mail"
+    implementation "jakarta.annotation:jakarta.annotation-api:2.1.1"
+    implementation "io.jsonwebtoken:jjwt-api:0.11.2"
+
+    // For OpenAPI 3.0 code generation - todo check if their are curated versions, if not move versions to ext
+    implementation "io.swagger.core.v3:swagger-annotations:2.2.8"
+    implementation "io.swagger.core.v3:swagger-models:2.2.8"
+    implementation "jakarta.validation:jakarta.validation-api:3.0.2"
 
     // Java 8 date/time handling with Jackson
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+
+    // Mapstruct
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+    implementation "com.google.code.findbugs:jsr305:3.0.2" // todo - move version to ext - not a spring boot curated dep
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    annotationProcessor "org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBindingVersion}"
 }
 
-tasks.withType(GenerateTask).configureEach {
-    outputs.upToDateWhen { false }
-    outputs.cacheIf { false }
-}
-
+// OpenAPI validation task: Validate the OpenAPI specification
 openApiValidate {
     inputSpec.set(file('../tc-anonymization-service-spec/openapi.yaml').absolutePath)
     recommend.set(true)
 }
 
+// OpenAPI generation task: Generate API and model classes from the OpenAPI spec
 openApiGenerate {
     generatorName.set("spring")
     inputSpec.set(file('../tc-anonymization-service-spec/openapi.yaml').absolutePath)
@@ -76,6 +110,7 @@ openApiGenerate {
     ])
 }
 
+// Clean-up task: Remove unnecessary generated files
 tasks.named("openApiGenerate").configure {
     doLast {
         def generatedMainClass = file("$buildDir/generated/src/main/java/org/openapitools/OpenApiGeneratorApplication.java")
@@ -85,6 +120,7 @@ tasks.named("openApiGenerate").configure {
     }
 }
 
+// Include generated sources in the main source set
 sourceSets {
     main {
         java {
@@ -93,8 +129,28 @@ sourceSets {
     }
 }
 
+// Testing configuration: Use JUnit Platform
 tasks.named('test') {
     useJUnitPlatform()
 }
 
+// Code generation runs before compilation
 compileJava.dependsOn("openApiGenerate")
+
+// Java compilation options
+compileJava {
+    options.annotationProcessorPath = configurations.annotationProcessor
+}
+
+// Additional compiler options
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs += [
+            "-Amapstruct.defaultComponentModel=spring" // MapStruct integration with Spring
+    ]
+}
+
+// Task-specific configuration: Force task outputs to always execute
+tasks.withType(GenerateTask).configureEach {
+    outputs.upToDateWhen { false }
+    outputs.cacheIf { false }
+}
