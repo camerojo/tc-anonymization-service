@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.tctalent.anonymization.entity.common.enums.CandidateStatus;
@@ -83,6 +84,7 @@ public class CandidateDocument {
   @Valid
   private List<@Valid CandidateOccupation> candidateOccupations;
 
+  @Transient // todo don't serialize to mongo until List schema is added to OpenApi
   @Valid
   private List<@Valid Object> candidateSavedLists;
 
