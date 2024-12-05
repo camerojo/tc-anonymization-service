@@ -24,6 +24,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import org.tctalent.anonymization.entity.common.enums.SearchType;
 
 @Entity
 @Table(name = "search_join")

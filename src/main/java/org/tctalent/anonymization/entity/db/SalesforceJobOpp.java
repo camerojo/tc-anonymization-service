@@ -36,6 +36,7 @@ import java.util.Set;
 import org.springframework.lang.Nullable;
 import lombok.Getter;
 import lombok.Setter;
+import org.tctalent.anonymization.entity.common.enums.JobOpportunityStage;
 
 /**
  * This represents an Employer Job Opportunity.

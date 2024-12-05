@@ -20,10 +20,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.lang.Nullable;
-import org.tctalent.anonymization.entity.db.CandidateOpportunityStage;
-import org.tctalent.anonymization.entity.db.HelpFocus;
+import org.tctalent.anonymization.entity.common.enums.CandidateOpportunityStage;
+import org.tctalent.anonymization.entity.common.enums.HelpFocus;
 import org.tctalent.anonymization.entity.db.HelpLink;
-import org.tctalent.anonymization.entity.db.JobOpportunityStage;
+import org.tctalent.anonymization.entity.common.enums.JobOpportunityStage;
 import org.tctalent.anonymization.request.PagedSearchRequest;
 
 /**

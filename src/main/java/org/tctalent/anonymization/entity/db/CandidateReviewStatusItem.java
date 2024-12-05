@@ -27,6 +27,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.tctalent.anonymization.entity.common.enums.ReviewStatus;
 
 /**
  * This indicates whether a candidate who turns up in a saved search really belongs in that search.

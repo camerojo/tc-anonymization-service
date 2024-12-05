@@ -28,6 +28,7 @@ import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.lang.Nullable;
+import org.tctalent.anonymization.entity.common.enums.AttachmentType;
 import org.tctalent.anonymization.entity.db.task.UploadType;
 
 @Getter

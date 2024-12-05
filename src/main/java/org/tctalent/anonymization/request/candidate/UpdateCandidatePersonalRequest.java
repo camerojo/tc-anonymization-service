@@ -21,9 +21,9 @@ import jakarta.persistence.Enumerated;
 import java.time.LocalDate;
 import lombok.Getter;
 import lombok.Setter;
-import org.tctalent.anonymization.entity.db.Gender;
-import org.tctalent.anonymization.entity.db.YesNo;
-import org.tctalent.anonymization.entity.db.YesNoUnsure;
+import org.tctalent.anonymization.entity.common.enums.Gender;
+import org.tctalent.anonymization.entity.common.enums.YesNo;
+import org.tctalent.anonymization.entity.common.enums.YesNoUnsure;
 
 @Getter
 @Setter

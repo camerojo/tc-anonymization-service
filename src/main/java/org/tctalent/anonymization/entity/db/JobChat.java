@@ -28,6 +28,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.lang.Nullable;
+import org.tctalent.anonymization.entity.common.enums.JobChatType;
 
 /**
  * Represents a JobChat - which is like a Slack Channel associated with a particular job opportunity

@@ -20,7 +20,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.lang.Nullable;
-import org.tctalent.anonymization.entity.db.Exam;
+import org.tctalent.anonymization.entity.common.enums.Exam;
 
 @Getter
 @Setter

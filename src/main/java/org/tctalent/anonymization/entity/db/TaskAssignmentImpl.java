@@ -33,6 +33,7 @@ import java.time.OffsetDateTime;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
+import org.tctalent.anonymization.entity.common.enums.Status;
 import org.tctalent.anonymization.entity.db.task.TaskAssignment;
 import org.tctalent.anonymization.entity.db.task.TaskType;
 

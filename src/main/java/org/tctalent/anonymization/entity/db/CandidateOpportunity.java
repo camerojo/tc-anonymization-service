@@ -32,6 +32,7 @@ import lombok.Setter;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 import org.springframework.util.CollectionUtils;
+import org.tctalent.anonymization.entity.common.enums.CandidateOpportunityStage;
 
 /**
  * This is a candidate opportunity to be recruited for a particular job.

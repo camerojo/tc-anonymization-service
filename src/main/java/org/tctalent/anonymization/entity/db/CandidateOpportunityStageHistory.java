@@ -21,6 +21,7 @@ import java.time.format.DateTimeParseException;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.tctalent.anonymization.entity.common.enums.CandidateOpportunityStage;
 import org.tctalent.anonymization.logging.LogBuilder;
 import org.tctalent.anonymization.entity.sf.OpportunityHistory;
 import org.tctalent.anonymization.util.SalesforceHelper;

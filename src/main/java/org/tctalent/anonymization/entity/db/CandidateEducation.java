@@ -28,6 +28,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.tctalent.anonymization.entity.common.enums.EducationType;
 
 @Getter
 @Setter

@@ -16,7 +16,7 @@
 
 package org.tctalent.anonymization.request.candidate.education;
 
-import org.tctalent.anonymization.entity.db.EducationType;
+import org.tctalent.anonymization.entity.common.enums.EducationType;
 
 public class UpdateCandidateEducationRequest {
 

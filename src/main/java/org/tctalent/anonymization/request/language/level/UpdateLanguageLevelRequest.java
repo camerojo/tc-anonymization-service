@@ -18,7 +18,7 @@ package org.tctalent.anonymization.request.language.level;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import org.tctalent.anonymization.entity.db.Status;
+import org.tctalent.anonymization.entity.common.enums.Status;
 
 public class UpdateLanguageLevelRequest {
 

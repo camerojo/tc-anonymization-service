@@ -20,14 +20,14 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.tctalent.anonymization.entity.db.DocumentStatus;
-import org.tctalent.anonymization.entity.db.FamilyRelations;
-import org.tctalent.anonymization.entity.db.OtherVisas;
-import org.tctalent.anonymization.entity.db.RiskLevel;
-import org.tctalent.anonymization.entity.db.TBBEligibilityAssessment;
-import org.tctalent.anonymization.entity.db.VisaEligibility;
-import org.tctalent.anonymization.entity.db.YesNo;
-import org.tctalent.anonymization.entity.db.YesNoUnsure;
+import org.tctalent.anonymization.entity.common.enums.DocumentStatus;
+import org.tctalent.anonymization.entity.common.enums.FamilyRelations;
+import org.tctalent.anonymization.entity.common.enums.OtherVisas;
+import org.tctalent.anonymization.entity.common.enums.RiskLevel;
+import org.tctalent.anonymization.entity.common.enums.TBBEligibilityAssessment;
+import org.tctalent.anonymization.entity.common.enums.VisaEligibility;
+import org.tctalent.anonymization.entity.common.enums.YesNo;
+import org.tctalent.anonymization.entity.common.enums.YesNoUnsure;
 
 /**
  * This is the data sent from the visa check intake, it contains visa check and visa job check data.

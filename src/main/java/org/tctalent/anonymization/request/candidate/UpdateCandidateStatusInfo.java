@@ -21,7 +21,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.tctalent.anonymization.entity.db.CandidateNote;
-import org.tctalent.anonymization.entity.db.CandidateStatus;
+import org.tctalent.anonymization.entity.common.enums.CandidateStatus;
 
 /**
  * Changing a candidate status includes more than just the new status.

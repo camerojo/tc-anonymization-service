@@ -17,7 +17,7 @@
 package org.tctalent.anonymization.request.candidate.education;
 
 import org.springframework.lang.Nullable;
-import org.tctalent.anonymization.entity.db.EducationType;
+import org.tctalent.anonymization.entity.common.enums.EducationType;
 
 public class CreateCandidateEducationRequest {
 

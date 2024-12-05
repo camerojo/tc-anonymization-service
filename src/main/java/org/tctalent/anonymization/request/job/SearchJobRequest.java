@@ -21,7 +21,7 @@ import org.springframework.lang.Nullable;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.tctalent.anonymization.entity.db.JobOpportunityStage;
+import org.tctalent.anonymization.entity.common.enums.JobOpportunityStage;
 import org.tctalent.anonymization.request.opportunity.SearchOpportunityRequest;
 
 @Getter

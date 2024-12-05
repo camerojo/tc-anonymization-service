@@ -19,7 +19,7 @@ package org.tctalent.anonymization.request.candidate;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
-import org.tctalent.anonymization.entity.db.Gender;
+import org.tctalent.anonymization.entity.common.enums.Gender;
 
 public class UpdateCandidateRequest extends BaseCandidateContactRequest {
 

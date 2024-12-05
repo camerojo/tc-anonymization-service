@@ -18,7 +18,7 @@ package org.tctalent.anonymization.entity.db.partner;
 
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
-import org.tctalent.anonymization.entity.db.Status;
+import org.tctalent.anonymization.entity.common.enums.Status;
 import org.tctalent.anonymization.entity.db.User;
 
 /**

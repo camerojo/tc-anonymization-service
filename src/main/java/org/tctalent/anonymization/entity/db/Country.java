@@ -28,6 +28,7 @@ import java.util.Set;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.tctalent.anonymization.entity.common.enums.Status;
 
 @Entity
 @Table(name = "country")

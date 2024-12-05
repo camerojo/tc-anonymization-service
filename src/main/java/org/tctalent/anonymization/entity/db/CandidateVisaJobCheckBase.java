@@ -26,6 +26,10 @@ import jakarta.persistence.MappedSuperclass;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.tctalent.anonymization.entity.common.enums.OtherVisas;
+import org.tctalent.anonymization.entity.common.enums.TBBEligibilityAssessment;
+import org.tctalent.anonymization.entity.common.enums.VisaEligibility;
+import org.tctalent.anonymization.entity.common.enums.YesNo;
 
 @Getter
 @Setter

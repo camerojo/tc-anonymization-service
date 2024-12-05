@@ -30,6 +30,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
+import org.tctalent.anonymization.entity.common.enums.HasPassport;
 import org.tctalent.anonymization.request.candidate.CandidateIntakeDataUpdate;
 
 @Getter

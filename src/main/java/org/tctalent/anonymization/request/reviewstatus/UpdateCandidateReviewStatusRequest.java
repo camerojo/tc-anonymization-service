@@ -19,7 +19,7 @@ package org.tctalent.anonymization.request.reviewstatus;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import org.tctalent.anonymization.entity.db.ReviewStatus;
+import org.tctalent.anonymization.entity.common.enums.ReviewStatus;
 
 @Getter
 @Setter

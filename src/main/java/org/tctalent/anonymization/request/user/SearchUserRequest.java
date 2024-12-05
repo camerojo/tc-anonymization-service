@@ -20,8 +20,8 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.tctalent.anonymization.entity.db.Role;
-import org.tctalent.anonymization.entity.db.Status;
+import org.tctalent.anonymization.entity.common.enums.Role;
+import org.tctalent.anonymization.entity.common.enums.Status;
 import org.tctalent.anonymization.request.PagedSearchRequest;
 
 @Getter

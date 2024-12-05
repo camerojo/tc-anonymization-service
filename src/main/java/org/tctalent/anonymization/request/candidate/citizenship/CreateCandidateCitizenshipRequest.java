@@ -21,7 +21,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.lang.Nullable;
-import org.tctalent.anonymization.entity.db.HasPassport;
+import org.tctalent.anonymization.entity.common.enums.HasPassport;
 
 @Getter
 @Setter

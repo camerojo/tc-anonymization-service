@@ -20,7 +20,7 @@ import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
 import org.tctalent.anonymization.entity.db.Employer;
-import org.tctalent.anonymization.entity.db.Status;
+import org.tctalent.anonymization.entity.common.enums.Status;
 import org.tctalent.anonymization.entity.db.User;
 
 @Getter

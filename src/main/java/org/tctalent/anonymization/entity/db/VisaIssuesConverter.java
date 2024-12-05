@@ -18,6 +18,7 @@ package org.tctalent.anonymization.entity.db;
 
 import jakarta.persistence.AttributeConverter;
 import java.util.List;
+import org.tctalent.anonymization.entity.common.enums.VisaIssue;
 import org.tctalent.anonymization.util.EnumHelper;
 
 /**
