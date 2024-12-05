@@ -26,7 +26,8 @@ public class CandidateController implements V1Api {
   @Override
   public ResponseEntity<CandidatePage> getAllCandidates(Integer page, Integer limit) {
     // Adjust page index because Spring Data JPA uses zero-based paging
-    // todo might be better to just change the API to require page 0 for the first page
+    // todo sm might be better to just change the API to require page 0 for the first page
+    // todo sm set a max limit - 50?
     Pageable pageable = PageRequest.of(page - 1, limit);
     CandidatePage candidatesPage = candidateService.findAll(pageable);
     return ResponseEntity.ok(candidatesPage);
