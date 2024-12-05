@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+
+  mongo:
+    image: mongo:8.0
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: tctalent
+      MONGO_INITDB_ROOT_PASSWORD: tctalent
+      MONGO_INITDB_DATABASE: tctalent
+    volumes:
+      - mongo-data:/data/db
+
+  mongo-express:
+    image: mongo-express:1-20
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: tctalent
+      ME_CONFIG_MONGODB_ADMINPASSWORD: tctalent
+      ME_CONFIG_MONGODB_URL: mongodb://tctalent:tctalent@mongo:27017/
+      ME_CONFIG_BASICAUTH: false
+
+volumes:
+  mongo-data:
