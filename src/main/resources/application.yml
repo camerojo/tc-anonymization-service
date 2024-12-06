@@ -31,15 +31,13 @@ spring:
     mongodb:
       uri: mongodb://tctalent:tctalent@localhost:27017/tctalent?authSource=admin
 
-# H2 - for prototyping
-#  datasource:
-#    url: jdbc:h2:mem:testdb
-#    driver-class-name: org.h2.Driver
-#    username: sa
-#    password:
-#  jpa:
-#    database-platform: org.hibernate.dialect.H2Dialect
-
+  # Batch
+  # todo sm not for prod as it creates tables on startup - will create via a flyways instead
+  batch:
+    jdbc:
+      initialize-schema: always # see todo above
+    job:
+      enabled: false # disables auto-run of jobs
 
 # for prototyping with TC entities
 jwt:
