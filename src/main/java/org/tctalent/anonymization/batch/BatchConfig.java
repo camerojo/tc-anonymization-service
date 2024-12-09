@@ -6,10 +6,10 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
+import org.springframework.batch.core.step.skip.AlwaysSkipItemSkipPolicy;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
-import org.springframework.batch.item.data.RepositoryItemReader;
 import org.springframework.batch.item.data.builder.RepositoryItemReaderBuilder;
 import org.springframework.batch.item.data.builder.RepositoryItemWriterBuilder;
 import org.springframework.context.annotation.Bean;
@@ -39,16 +39,24 @@ public class BatchConfig {
   public Step candidateMigrationStep(JobRepository jobRepository,
       DataSourceTransactionManager transactionManager,
       ItemReader<Candidate> jpaItemReader,
-      ItemProcessor<Candidate, CandidateDocument> processor,
+      ItemProcessor<Candidate, CandidateDocument> itemProcessor,
       ItemWriter<CandidateDocument> mongoItemWriter,
-      LoggingChunkListener loggingChunkListener) {
+      LoggingChunkListener loggingChunkListener,
+      LoggingItemReaderListener loggingItemReaderListener,
+      LoggingItemProcessListener loggingItemProcessListener,
+      LoggingItemWriterListener loggingItemWriterListener) {
 
     return new StepBuilder("candidateMigrationStep", jobRepository)
         .<Candidate, CandidateDocument>chunk(100, transactionManager)
-        .reader(jpaItemReader)
-        .processor(processor)
-        .writer(mongoItemWriter)
         .listener(loggingChunkListener)
+        .reader(jpaItemReader)
+        .listener(loggingItemReaderListener)
+        .processor(itemProcessor)
+        .listener(loggingItemProcessListener)
+        .writer(mongoItemWriter)
+        .listener(loggingItemWriterListener)
+        .faultTolerant()
+        .skipPolicy(new AlwaysSkipItemSkipPolicy())
         .build();
   }
 
