@@ -43,4 +43,52 @@ public class CandidateVisaJobCheck {
   private List<Long> languagesRequired;
   private YesNo languagesThresholdMet;
   private String languagesThresholdNotes;
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class CandidateVisaJobCheck {\n");
+    sb.append("    jobOpp: ").append(toIndentedString(jobOpp)).append("\n");
+    sb.append("    interest: ").append(toIndentedString(interest)).append("\n");
+    sb.append("    interestNotes: ").append(toIndentedString(interestNotes)).append("\n");
+    sb.append("    qualification: ").append(toIndentedString(qualification)).append("\n");
+    sb.append("    qualificationNotes: ").append(toIndentedString(qualificationNotes)).append("\n");
+    sb.append("    occupation: ").append(toIndentedString(occupation)).append("\n");
+    sb.append("    occupationNotes: ").append(toIndentedString(occupationNotes)).append("\n");
+    sb.append("    salaryTsmit: ").append(toIndentedString(salaryTsmit)).append("\n");
+    sb.append("    regional: ").append(toIndentedString(regional)).append("\n");
+    sb.append("    eligible494: ").append(toIndentedString(eligible494)).append("\n");
+    sb.append("    eligible494Notes: ").append(toIndentedString(eligible494Notes)).append("\n");
+    sb.append("    eligible186: ").append(toIndentedString(eligible186)).append("\n");
+    sb.append("    eligible186Notes: ").append(toIndentedString(eligible186Notes)).append("\n");
+    sb.append("    eligibleOther: ").append(toIndentedString(eligibleOther)).append("\n");
+    sb.append("    eligibleOtherNotes: ").append(toIndentedString(eligibleOtherNotes)).append("\n");
+    sb.append("    putForward: ").append(toIndentedString(putForward)).append("\n");
+    sb.append("    tbbEligibility: ").append(toIndentedString(tbbEligibility)).append("\n");
+    sb.append("    notes: ").append(toIndentedString(notes)).append("\n");
+    sb.append("    relevantWorkExp: ").append(toIndentedString(relevantWorkExp)).append("\n");
+    sb.append("    ageRequirement: ").append(toIndentedString(ageRequirement)).append("\n");
+    sb.append("    preferredPathways: ").append(toIndentedString(preferredPathways)).append("\n");
+    sb.append("    ineligiblePathways: ").append(toIndentedString(ineligiblePathways)).append("\n");
+    sb.append("    eligiblePathways: ").append(toIndentedString(eligiblePathways)).append("\n");
+    sb.append("    occupationCategory: ").append(toIndentedString(occupationCategory)).append("\n");
+    sb.append("    occupationSubCategory: ").append(toIndentedString(occupationSubCategory)).append("\n");
+    sb.append("    englishThreshold: ").append(toIndentedString(englishThreshold)).append("\n");
+    sb.append("    languagesRequired: ").append(toIndentedString(languagesRequired)).append("\n");
+    sb.append("    languagesThresholdMet: ").append(toIndentedString(languagesThresholdMet)).append("\n");
+    sb.append("    languagesThresholdNotes: ").append(toIndentedString(languagesThresholdNotes)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
 }

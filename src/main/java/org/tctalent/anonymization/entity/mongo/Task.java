@@ -21,4 +21,32 @@ public class Task {
 
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private Instant updatedDate;
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class Task {\n");
+    sb.append("    admin: ").append(toIndentedString(admin)).append("\n");
+    sb.append("    daysToComplete: ").append(toIndentedString(daysToComplete)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    helpLink: ").append(toIndentedString(helpLink)).append("\n");
+    sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    optional: ").append(toIndentedString(optional)).append("\n");
+    sb.append("    createdDate: ").append(toIndentedString(createdDate)).append("\n");
+    sb.append("    updatedDate: ").append(toIndentedString(updatedDate)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
 }

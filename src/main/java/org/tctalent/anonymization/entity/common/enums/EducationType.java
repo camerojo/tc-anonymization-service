@@ -17,7 +17,6 @@
 package org.tctalent.anonymization.entity.common.enums;
 
 public enum EducationType {
-
     Associate,
     Vocational,
     Bachelor,

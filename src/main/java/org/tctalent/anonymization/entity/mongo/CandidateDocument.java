@@ -231,6 +231,162 @@ public class CandidateDocument {
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private Instant updatedDate;
 
-  // todo equals, hadhcode, tostring
+  // todo equals, hadhcode
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class Candidate {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    additionalInfo: ").append(toIndentedString(additionalInfo)).append("\n");
+    sb.append("    asylumYear: ").append(toIndentedString(asylumYear)).append("\n");
+    sb.append("    arrestImprison: ").append(toIndentedString(arrestImprison)).append("\n");
+    sb.append("    arrestImprisonNotes: ").append(toIndentedString(arrestImprisonNotes)).append("\n");
+    sb.append("    availDate: ").append(toIndentedString(availDate)).append("\n");
+    sb.append("    availImmediate: ").append(toIndentedString(availImmediate)).append("\n");
+    sb.append("    availImmediateJobOps: ").append(toIndentedString(availImmediateJobOps)).append("\n");
+    sb.append("    availImmediateReason: ").append(toIndentedString(availImmediateReason)).append("\n");
+    sb.append("    availImmediateNotes: ").append(toIndentedString(availImmediateNotes)).append("\n");
+    sb.append("    birthCountry: ").append(toIndentedString(birthCountry)).append("\n");
+    sb.append("    candidateCertifications: ").append(toIndentedString(candidateCertifications)).append("\n");
+    sb.append("    candidateCitizenships: ").append(toIndentedString(candidateCitizenships)).append("\n");
+    sb.append("    candidateDependants: ").append(toIndentedString(candidateDependants)).append("\n");
+    sb.append("    candidateDestinations: ").append(toIndentedString(candidateDestinations)).append("\n");
+    sb.append("    candidateEducations: ").append(toIndentedString(candidateEducations)).append("\n");
+    sb.append("    candidateExams: ").append(toIndentedString(candidateExams)).append("\n");
+    sb.append("    candidateJobExperiences: ").append(toIndentedString(candidateJobExperiences)).append("\n");
+    sb.append("    candidateLanguages: ").append(toIndentedString(candidateLanguages)).append("\n");
+    sb.append("    candidateMessage: ").append(toIndentedString(candidateMessage)).append("\n");
+    sb.append("    candidateNotes: ").append(toIndentedString(candidateNotes)).append("\n");
+    sb.append("    candidateOccupations: ").append(toIndentedString(candidateOccupations)).append("\n");
+    sb.append("    candidateSavedLists: ").append(toIndentedString(candidateSavedLists)).append("\n");
+    sb.append("    candidateSkills: ").append(toIndentedString(candidateSkills)).append("\n");
+    sb.append("    candidateVisaChecks: ").append(toIndentedString(candidateVisaChecks)).append("\n");
+    sb.append("    canDrive: ").append(toIndentedString(canDrive)).append("\n");
+    sb.append("    city: ").append(toIndentedString(city)).append("\n");
+    sb.append("    conflict: ").append(toIndentedString(conflict)).append("\n");
+    sb.append("    conflictNotes: ").append(toIndentedString(conflictNotes)).append("\n");
+    sb.append("    contactConsentPartners: ").append(toIndentedString(contactConsentPartners)).append("\n");
+    sb.append("    contactConsentRegistration: ").append(toIndentedString(contactConsentRegistration)).append("\n");
+    sb.append("    country: ").append(toIndentedString(country)).append("\n");
+    sb.append("    covidVaccinated: ").append(toIndentedString(covidVaccinated)).append("\n");
+    sb.append("    covidVaccinatedDate: ").append(toIndentedString(covidVaccinatedDate)).append("\n");
+    sb.append("    covidVaccineName: ").append(toIndentedString(covidVaccineName)).append("\n");
+    sb.append("    covidVaccineNotes: ").append(toIndentedString(covidVaccineNotes)).append("\n");
+    sb.append("    covidVaccinatedStatus: ").append(toIndentedString(covidVaccinatedStatus)).append("\n");
+    sb.append("    crimeConvict: ").append(toIndentedString(crimeConvict)).append("\n");
+    sb.append("    crimeConvictNotes: ").append(toIndentedString(crimeConvictNotes)).append("\n");
+    sb.append("    destLimit: ").append(toIndentedString(destLimit)).append("\n");
+    sb.append("    destLimitNotes: ").append(toIndentedString(destLimitNotes)).append("\n");
+    sb.append("    drivingLicense: ").append(toIndentedString(drivingLicense)).append("\n");
+    sb.append("    drivingLicenseCountry: ").append(toIndentedString(drivingLicenseCountry)).append("\n");
+    sb.append("    drivingLicenseExp: ").append(toIndentedString(drivingLicenseExp)).append("\n");
+    sb.append("    englishAssessment: ").append(toIndentedString(englishAssessment)).append("\n");
+    sb.append("    englishAssessmentScoreIelts: ").append(toIndentedString(englishAssessmentScoreIelts)).append("\n");
+    sb.append("    familyMove: ").append(toIndentedString(familyMove)).append("\n");
+    sb.append("    familyMoveNotes: ").append(toIndentedString(familyMoveNotes)).append("\n");
+    sb.append("    frenchAssessment: ").append(toIndentedString(frenchAssessment)).append("\n");
+    sb.append("    frenchAssessmentScoreNclc: ").append(toIndentedString(frenchAssessmentScoreNclc)).append("\n");
+    sb.append("    fullIntakeCompletedBy: ").append(toIndentedString(fullIntakeCompletedBy)).append("\n");
+    sb.append("    fullIntakeCompletedDate: ").append(toIndentedString(fullIntakeCompletedDate)).append("\n");
+    sb.append("    gender: ").append(toIndentedString(gender)).append("\n");
+    sb.append("    healthIssues: ").append(toIndentedString(healthIssues)).append("\n");
+    sb.append("    healthIssuesNotes: ").append(toIndentedString(healthIssuesNotes)).append("\n");
+    sb.append("    homeLocation: ").append(toIndentedString(homeLocation)).append("\n");
+    sb.append("    hostChallenges: ").append(toIndentedString(hostChallenges)).append("\n");
+    sb.append("    hostEntryLegally: ").append(toIndentedString(hostEntryLegally)).append("\n");
+    sb.append("    hostEntryLegallyNotes: ").append(toIndentedString(hostEntryLegallyNotes)).append("\n");
+    sb.append("    hostEntryYear: ").append(toIndentedString(hostEntryYear)).append("\n");
+    sb.append("    hostEntryYearNotes: ").append(toIndentedString(hostEntryYearNotes)).append("\n");
+    sb.append("    ieltsScore: ").append(toIndentedString(ieltsScore)).append("\n");
+    sb.append("    intRecruitReasons: ").append(toIndentedString(intRecruitReasons)).append("\n");
+    sb.append("    intRecruitOther: ").append(toIndentedString(intRecruitOther)).append("\n");
+    sb.append("    intRecruitRural: ").append(toIndentedString(intRecruitRural)).append("\n");
+    sb.append("    intRecruitRuralNotes: ").append(toIndentedString(intRecruitRuralNotes)).append("\n");
+    sb.append("    leftHomeNotes: ").append(toIndentedString(leftHomeNotes)).append("\n");
+    sb.append("    leftHomeReasons: ").append(toIndentedString(leftHomeReasons)).append("\n");
+    sb.append("    maritalStatus: ").append(toIndentedString(maritalStatus)).append("\n");
+    sb.append("    maritalStatusNotes: ").append(toIndentedString(maritalStatusNotes)).append("\n");
+    sb.append("    maxEducationLevel: ").append(toIndentedString(maxEducationLevel)).append("\n");
+    sb.append("    mediaWillingness: ").append(toIndentedString(mediaWillingness)).append("\n");
+    sb.append("    migrationEducationMajor: ").append(toIndentedString(migrationEducationMajor)).append("\n");
+    sb.append("    migrationNationality: ").append(toIndentedString(migrationNationality)).append("\n");
+    sb.append("    militaryService: ").append(toIndentedString(militaryService)).append("\n");
+    sb.append("    militaryWanted: ").append(toIndentedString(militaryWanted)).append("\n");
+    sb.append("    militaryStart: ").append(toIndentedString(militaryStart)).append("\n");
+    sb.append("    militaryEnd: ").append(toIndentedString(militaryEnd)).append("\n");
+    sb.append("    militaryNotes: ").append(toIndentedString(militaryNotes)).append("\n");
+    sb.append("    miniIntakeCompletedBy: ").append(toIndentedString(miniIntakeCompletedBy)).append("\n");
+    sb.append("    miniIntakeCompletedDate: ").append(toIndentedString(miniIntakeCompletedDate)).append("\n");
+    sb.append("    monitoringEvaluationConsent: ").append(toIndentedString(monitoringEvaluationConsent)).append("\n");
+    sb.append("    nationality: ").append(toIndentedString(nationality)).append("\n");
+    sb.append("    numberDependants: ").append(toIndentedString(numberDependants)).append("\n");
+    sb.append("    partnerRegistered: ").append(toIndentedString(partnerRegistered)).append("\n");
+    sb.append("    partnerCitizenship: ").append(toIndentedString(partnerCitizenship)).append("\n");
+    sb.append("    partnerEduLevel: ").append(toIndentedString(partnerEduLevel)).append("\n");
+    sb.append("    partnerEduLevelNotes: ").append(toIndentedString(partnerEduLevelNotes)).append("\n");
+    sb.append("    partnerEnglish: ").append(toIndentedString(partnerEnglish)).append("\n");
+    sb.append("    partnerEnglishLevel: ").append(toIndentedString(partnerEnglishLevel)).append("\n");
+    sb.append("    partnerIelts: ").append(toIndentedString(partnerIelts)).append("\n");
+    sb.append("    partnerIeltsScore: ").append(toIndentedString(partnerIeltsScore)).append("\n");
+    sb.append("    partnerIeltsYr: ").append(toIndentedString(partnerIeltsYr)).append("\n");
+    sb.append("    partnerOccupation: ").append(toIndentedString(partnerOccupation)).append("\n");
+    sb.append("    partnerOccupationNotes: ").append(toIndentedString(partnerOccupationNotes)).append("\n");
+    sb.append("    residenceStatus: ").append(toIndentedString(residenceStatus)).append("\n");
+    sb.append("    residenceStatusNotes: ").append(toIndentedString(residenceStatusNotes)).append("\n");
+    sb.append("    returnedHome: ").append(toIndentedString(returnedHome)).append("\n");
+    sb.append("    returnedHomeReason: ").append(toIndentedString(returnedHomeReason)).append("\n");
+    sb.append("    returnedHomeReasonNo: ").append(toIndentedString(returnedHomeReasonNo)).append("\n");
+    sb.append("    returnHomeSafe: ").append(toIndentedString(returnHomeSafe)).append("\n");
+    sb.append("    returnHomeFuture: ").append(toIndentedString(returnHomeFuture)).append("\n");
+    sb.append("    returnHomeWhen: ").append(toIndentedString(returnHomeWhen)).append("\n");
+    sb.append("    resettleThird: ").append(toIndentedString(resettleThird)).append("\n");
+    sb.append("    resettleThirdStatus: ").append(toIndentedString(resettleThirdStatus)).append("\n");
+    sb.append("    shareableNotes: ").append(toIndentedString(shareableNotes)).append("\n");
+    sb.append("    state: ").append(toIndentedString(state)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    surveyType: ").append(toIndentedString(surveyType)).append("\n");
+    sb.append("    surveyComment: ").append(toIndentedString(surveyComment)).append("\n");
+    sb.append("    taskAssignments: ").append(toIndentedString(taskAssignments)).append("\n");
+    sb.append("    unhcrConsent: ").append(toIndentedString(unhcrConsent)).append("\n");
+    sb.append("    unhcrNotes: ").append(toIndentedString(unhcrNotes)).append("\n");
+    sb.append("    unhcrNotRegStatus: ").append(toIndentedString(unhcrNotRegStatus)).append("\n");
+    sb.append("    unhcrRegistered: ").append(toIndentedString(unhcrRegistered)).append("\n");
+    sb.append("    unhcrStatus: ").append(toIndentedString(unhcrStatus)).append("\n");
+    sb.append("    unrwaNotes: ").append(toIndentedString(unrwaNotes)).append("\n");
+    sb.append("    unrwaNotRegStatus: ").append(toIndentedString(unrwaNotRegStatus)).append("\n");
+    sb.append("    unrwaRegistered: ").append(toIndentedString(unrwaRegistered)).append("\n");
+    sb.append("    visaIssues: ").append(toIndentedString(visaIssues)).append("\n");
+    sb.append("    visaIssuesNotes: ").append(toIndentedString(visaIssuesNotes)).append("\n");
+    sb.append("    visaReject: ").append(toIndentedString(visaReject)).append("\n");
+    sb.append("    visaRejectNotes: ").append(toIndentedString(visaRejectNotes)).append("\n");
+    sb.append("    workAbroad: ").append(toIndentedString(workAbroad)).append("\n");
+    sb.append("    workAbroadNotes: ").append(toIndentedString(workAbroadNotes)).append("\n");
+    sb.append("    workDesired: ").append(toIndentedString(workDesired)).append("\n");
+    sb.append("    workDesiredNotes: ").append(toIndentedString(workDesiredNotes)).append("\n");
+    sb.append("    workPermit: ").append(toIndentedString(workPermit)).append("\n");
+    sb.append("    workPermitDesired: ").append(toIndentedString(workPermitDesired)).append("\n");
+    sb.append("    workPermitDesiredNotes: ").append(toIndentedString(workPermitDesiredNotes)).append("\n");
+    sb.append("    yearOfArrival: ").append(toIndentedString(yearOfArrival)).append("\n");
+    sb.append("    yearOfBirth: ").append(toIndentedString(yearOfBirth)).append("\n");
+    sb.append("    createdBy: ").append(toIndentedString(createdBy)).append("\n");
+    sb.append("    createdDate: ").append(toIndentedString(createdDate)).append("\n");
+    sb.append("    updatedBy: ").append(toIndentedString(updatedBy)).append("\n");
+    sb.append("    updatedDate: ").append(toIndentedString(updatedDate)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
 }
 

@@ -17,9 +17,7 @@
 package org.tctalent.anonymization.entity.common.enums;
 
 public enum Gender {
-
     male,
     female,
     other
-
 }
