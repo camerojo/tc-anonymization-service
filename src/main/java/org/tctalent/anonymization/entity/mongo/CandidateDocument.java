@@ -231,7 +231,30 @@ public class CandidateDocument {
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private Instant updatedDate;
 
-  // todo equals, hadhcode
+  @Override
+  public int hashCode() {
+    if (id != null) {
+      return id.hashCode();
+    } else {
+      return super.hashCode();
+    }
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) return true;
+
+    if (obj == null || getClass() != obj.getClass()) {
+      return false;
+    }
+    CandidateDocument other = (CandidateDocument) obj;
+
+    //If id is missing assume that it is not equal to other instance.
+    if (id == null) return false;
+
+    //Equivalence by id
+    return id.equals(other.id);
+  }
 
   @Override
   public String toString() {
