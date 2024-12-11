@@ -9,6 +9,14 @@ import org.tctalent.anonymization.entity.mongo.CandidateDocument;
 import org.tctalent.anonymization.mapper.CandidateMapper;
 
 
+/**
+ * Processor that implements the {@link ItemProcessor} interface to map {@link Candidate} entities
+ * into {@link CandidateDocument} objects. The mapping is delegated to the {@link CandidateMapper}.
+ * </p>
+ * Used as part of the candidate migration batch process.
+ *
+ * @author sadatmalik
+ */
 @Slf4j
 @RequiredArgsConstructor
 public class CandidateItemProcessor implements

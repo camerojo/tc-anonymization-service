@@ -6,6 +6,14 @@ import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.stereotype.Component;
 
+/**
+ * Listener for handling job completion notifications in the batch process.
+ * </p>
+ * Implements {@link JobExecutionListener} providing a hook for further actions upon job completion
+ * if needed.
+ *
+ * @author sadatmalik
+ */
 @Slf4j
 @Component
 public class JobCompletionNotificationListener implements JobExecutionListener {

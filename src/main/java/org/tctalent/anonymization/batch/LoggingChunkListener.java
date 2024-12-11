@@ -5,6 +5,12 @@ import org.springframework.batch.core.ChunkListener;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.stereotype.Component;
 
+/**
+ * Listener that implements {@link ChunkListener} to provide logging for successful chunk
+ * processing and errors that occur during chunk execution.
+ *
+ * @author sadatmalik
+ */
 @Slf4j
 @Component
 public class LoggingChunkListener implements ChunkListener {

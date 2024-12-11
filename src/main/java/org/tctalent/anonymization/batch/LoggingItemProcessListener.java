@@ -6,6 +6,12 @@ import org.springframework.stereotype.Component;
 import org.tctalent.anonymization.entity.db.Candidate;
 import org.tctalent.anonymization.entity.mongo.CandidateDocument;
 
+/**
+ * Listener that implements {@link ItemProcessListener} to provide logging for errors that occur
+ * while processing individual items.
+ *
+ * @author sadatmalik
+ */
 @Slf4j
 @Component
 public class LoggingItemProcessListener implements ItemProcessListener<Candidate, CandidateDocument> {
