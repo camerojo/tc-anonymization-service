@@ -81,7 +81,7 @@ public class BatchConfig {
   public ItemWriter<CandidateDocument> mongoItemWriter(CandidateMongoRepository candidateRepository) {
     return new RepositoryItemWriterBuilder<CandidateDocument>()
         .repository(candidateRepository)
-        .methodName("save") // todo Use "saveAll" to batch persist documents - errors
+        .methodName("save") // Implicitly throttles the batch, which is preferred. Use "saveAll" if performance is an issue.
         .build();
       }
 
