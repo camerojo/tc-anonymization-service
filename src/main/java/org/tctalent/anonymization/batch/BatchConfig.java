@@ -1,6 +1,7 @@
 package org.tctalent.anonymization.batch;
 
 import java.util.Collections;
+import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
@@ -38,7 +39,10 @@ import org.tctalent.anonymization.repository.CandidateRepository;
  * @author sadatmalik
  */
 @Configuration
+@RequiredArgsConstructor
 public class BatchConfig {
+
+  private final BatchProperties batchProperties;
 
   /**
    * Configures the candidate migration job with its steps and completion listener.
@@ -85,7 +89,7 @@ public class BatchConfig {
       LoggingItemWriterListener loggingItemWriterListener) {
 
     return new StepBuilder("candidateMigrationStep", jobRepository)
-        .<Candidate, CandidateDocument>chunk(100, transactionManager)
+        .<Candidate, CandidateDocument>chunk(batchProperties.getChunkSize(), transactionManager)
         .reader(jpaItemReader)
         .processor(itemProcessor)
         .writer(mongoItemWriter)
@@ -110,7 +114,7 @@ public class BatchConfig {
         .name("candidateJpaRepositoryReader")
         .repository(candidateRepository)
         .methodName("findAll")
-        .pageSize(100)
+        .pageSize(batchProperties.getPageSize())
         .arguments(Collections.emptyList())
         .sorts(Collections.singletonMap("id", Sort.Direction.ASC))
         .build();
