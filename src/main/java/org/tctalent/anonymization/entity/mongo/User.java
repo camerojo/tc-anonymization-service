@@ -39,9 +39,8 @@ public class User {
   @Valid
   private List<SearchResponse> sharedSearches;
 
-  @Transient // todo don't serialize to mongo until List schema is added to OpenApi
   @Valid
-  private List<@Valid Object> sharedLists;
+  private List<@Valid ModelList> sharedLists;
 
   @Valid
   private List<@Valid Country> sourceCountries;

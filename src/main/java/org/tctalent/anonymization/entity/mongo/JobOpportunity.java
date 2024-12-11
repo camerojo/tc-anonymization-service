@@ -18,7 +18,7 @@ public class JobOpportunity {
   private String employer;
   private Employer employerEntity;
   private Boolean evergreen;
-  private Object exclusionList;
+  private ModelList exclusionList;
   private String jobSummary;
   private String name;
   private String ownerId;
@@ -30,8 +30,8 @@ public class JobOpportunity {
 
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   private LocalDate submissionDueDate;
-  private Object submissionList;
-  private Object suggestedList;
+  private ModelList submissionList;
+  private ModelList suggestedList;
 
   @Valid
   private List<SearchResponse> suggestedSearches;

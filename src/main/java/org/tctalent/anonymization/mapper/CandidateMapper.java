@@ -16,8 +16,11 @@ public interface CandidateMapper {
   @Mapping(source = "id", target = "id")
   Candidate toModel(org.tctalent.anonymization.entity.db.Candidate entity);
 
+  Candidate toModel(CandidateDocument document);
+
   CandidatePage toCandidatePage(Page<Candidate> page);
 
+  @Mapping(source = "id", target = "id")
   @Mapping(source = "createdDate", target = "createdDate")
   CandidateDocument toDocument(org.tctalent.anonymization.entity.db.Candidate entity);
 }
