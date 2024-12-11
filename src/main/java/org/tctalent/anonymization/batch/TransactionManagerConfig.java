@@ -11,8 +11,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
  * </p>
  * Used for transaction management across the batch process.
  *
- * @author [Your Name]
- * @since [Version or Date]
+ * @author sadatmalik
  */
 @Configuration
 public class TransactionManagerConfig {
