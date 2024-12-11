@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.Transient;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.tctalent.anonymization.entity.common.enums.Role;
 import org.tctalent.anonymization.entity.common.enums.Status;
@@ -38,6 +39,7 @@ public class User {
   @Valid
   private List<SearchResponse> sharedSearches;
 
+  @Transient // todo don't serialize to mongo until List schema is added to OpenApi
   @Valid
   private List<@Valid Object> sharedLists;
 
