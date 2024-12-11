@@ -2,7 +2,8 @@
 
 ## Overview ##
 
-Implementation of the Talent Catalog Anonymization Service API (link)
+This service implements the 
+[Talent Catalog Anonymization Service API](https://github.com/Talent-Catalog/tc-anonymization-service-spec)
 
 ## How do I get set up? ##
 
@@ -86,7 +87,7 @@ Download and install the latest of the following tools.
         docker-compose --version
       ```
 
-### Clone the TC Anonymization Service and Spec repositories from Git ###
+### Clone the TC Anonymization Service and Specification repositories from Git ###
 
 - Clone [the service](https://github.com/Talent-Catalog/tc-anonymization-service.git) to your local system
 ```shell
