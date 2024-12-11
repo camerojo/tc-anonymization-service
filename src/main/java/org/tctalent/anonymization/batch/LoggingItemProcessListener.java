@@ -5,6 +5,7 @@ import org.springframework.batch.core.ItemProcessListener;
 import org.springframework.stereotype.Component;
 import org.tctalent.anonymization.entity.db.Candidate;
 import org.tctalent.anonymization.entity.mongo.CandidateDocument;
+import org.tctalent.anonymization.logging.LogBuilder;
 
 /**
  * Listener that implements {@link ItemProcessListener} to provide logging for errors that occur
@@ -18,8 +19,9 @@ public class LoggingItemProcessListener implements ItemProcessListener<Candidate
 
   @Override
   public void onProcessError(Candidate item, Exception e) {
-    // Log the item that failed to process - todo LogBuilder
-    log.error("An error occurred while processing item.", e);
-    log.error("Failed to process item: {}", item.toString());  // todo LogBuilder
+    LogBuilder.builder(log)
+        .action("Error processing item")
+        .message("Item details:" + item.toString())
+        .logError(e);
   }
 }

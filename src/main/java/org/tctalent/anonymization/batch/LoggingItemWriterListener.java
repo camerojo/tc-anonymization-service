@@ -6,6 +6,7 @@ import org.springframework.batch.core.ItemWriteListener;
 import org.springframework.batch.item.Chunk;
 import org.springframework.stereotype.Component;
 import org.tctalent.anonymization.entity.mongo.CandidateDocument;
+import org.tctalent.anonymization.logging.LogBuilder;
 
 /**
  * Listener that implements {@link ItemWriteListener} to provide logging for errors that occur while
@@ -20,13 +21,14 @@ public class LoggingItemWriterListener implements ItemWriteListener<CandidateDoc
 
   @Override
   public void onWriteError(Exception exception, Chunk<? extends CandidateDocument> items) {
-    // Log the items that failed to write - todo LogBuilder
-    log.error("An error occurred while writing items.", exception);
-
     String itemDetails = items.getItems().stream()
         .map(Object::toString)
         .collect(Collectors.joining(", "));
-    log.error("Failed to write items: {}", itemDetails);  // todo LogBuilder
+
+    LogBuilder.builder(log)
+        .action("Error writing items")
+        .message("Failed to write items:" + itemDetails)
+        .logError(exception);
   }
 
 }

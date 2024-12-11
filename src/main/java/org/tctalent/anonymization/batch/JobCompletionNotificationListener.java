@@ -5,6 +5,7 @@ import org.springframework.batch.core.BatchStatus;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.stereotype.Component;
+import org.tctalent.anonymization.logging.LogBuilder;
 
 /**
  * Listener for handling job completion notifications in the batch process.
@@ -21,8 +22,10 @@ public class JobCompletionNotificationListener implements JobExecutionListener {
   @Override
   public void afterJob(JobExecution jobExecution) {
     if (BatchStatus.COMPLETED.equals(jobExecution.getStatus())) {
-      // todo use LogBuilder
-      log.info("!!!! Batch job COMPLETED !!!!");
+      LogBuilder.builder(log)
+          .action("Batch completion")
+          .message("Batch job has finished successfully.")
+          .logInfo();
     }
   }
 

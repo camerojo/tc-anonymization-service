@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.ItemReadListener;
 import org.springframework.stereotype.Component;
 import org.tctalent.anonymization.entity.db.Candidate;
+import org.tctalent.anonymization.logging.LogBuilder;
 
 /**
  * Listener that implements {@link ItemReadListener} to provide logging for errors that
@@ -17,8 +18,10 @@ public class LoggingItemReaderListener implements ItemReadListener<Candidate> {
 
   @Override
   public void onReadError(Exception exception) {
-    // Log details about the error - todo LogBuilder
-    log.error("An error occurred while reading an item.", exception);
+    LogBuilder.builder(log)
+        .action("Error reading item")
+        .message("Error message:" + exception.getMessage())
+        .logError(exception);
   }
 
 }
