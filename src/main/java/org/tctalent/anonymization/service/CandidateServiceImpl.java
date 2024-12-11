@@ -28,7 +28,8 @@ public class CandidateServiceImpl implements CandidateService {
 
   @Override
   public Candidate findById(UUID id) {
-    return candidateMongoRepository.findById(id)
+    return candidateMongoRepository
+        .findById(id)
         .map(candidateMapper::toModel)
         .orElseThrow(() -> new RuntimeException("Candidate not found")); // todo better exceptions
   }
