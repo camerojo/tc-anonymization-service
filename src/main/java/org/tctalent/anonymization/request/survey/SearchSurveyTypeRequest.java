@@ -16,7 +16,7 @@
 
 package org.tctalent.anonymization.request.survey;
 
-import org.tctalent.anonymization.entity.db.Status;
+import org.tctalent.anonymization.entity.common.enums.Status;
 import org.tctalent.anonymization.request.PagedSearchRequest;
 
 public class SearchSurveyTypeRequest extends PagedSearchRequest {

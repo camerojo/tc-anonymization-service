@@ -21,9 +21,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.lang.Nullable;
-import org.tctalent.anonymization.entity.db.DependantRelations;
-import org.tctalent.anonymization.entity.db.Registration;
-import org.tctalent.anonymization.entity.db.YesNo;
+import org.tctalent.anonymization.entity.common.enums.DependantRelations;
+import org.tctalent.anonymization.entity.common.enums.Registration;
+import org.tctalent.anonymization.entity.common.enums.YesNo;
 
 @Getter
 @Setter

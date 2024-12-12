@@ -16,7 +16,7 @@
 
 package org.tctalent.anonymization.request.candidate;
 
-import org.tctalent.anonymization.entity.db.SearchType;
+import org.tctalent.anonymization.entity.common.enums.SearchType;
 
 public class SearchJoinRequest {
 

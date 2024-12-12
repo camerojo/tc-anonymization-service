@@ -28,6 +28,7 @@ import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.lang.Nullable;
+import org.tctalent.anonymization.entity.common.enums.DuolingoCouponStatus;
 
 /**
  * Represents a Duolingo coupon that can be assigned to candidates for accessing Duolingo tests.

@@ -24,6 +24,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.Setter;
+import org.tctalent.anonymization.entity.common.enums.Status;
 import org.tctalent.anonymization.util.locale.LocaleHelper;
 
 /**

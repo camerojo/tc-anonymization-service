@@ -28,6 +28,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
+import org.tctalent.anonymization.entity.common.enums.YesNoUnsure;
 import org.tctalent.anonymization.request.candidate.CandidateIntakeDataUpdate;
 
 @Getter

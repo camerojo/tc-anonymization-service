@@ -18,9 +18,9 @@ package org.tctalent.anonymization.request.candidate;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.tctalent.anonymization.entity.db.UnhcrStatus;
-import org.tctalent.anonymization.entity.db.YesNo;
-import org.tctalent.anonymization.entity.db.YesNoUnsure;
+import org.tctalent.anonymization.entity.common.enums.UnhcrStatus;
+import org.tctalent.anonymization.entity.common.enums.YesNo;
+import org.tctalent.anonymization.entity.common.enums.YesNoUnsure;
 
 @Getter
 @Setter

@@ -28,6 +28,11 @@ import java.util.HashSet;
 import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
+import org.tctalent.anonymization.entity.common.enums.DocumentStatus;
+import org.tctalent.anonymization.entity.common.enums.FamilyRelations;
+import org.tctalent.anonymization.entity.common.enums.RiskLevel;
+import org.tctalent.anonymization.entity.common.enums.YesNo;
+import org.tctalent.anonymization.entity.common.enums.YesNoUnsure;
 
 @Getter
 @Setter

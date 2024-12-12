@@ -8,18 +8,18 @@ import org.springframework.stereotype.Service;
 import org.tctalent.anonymization.mapper.CandidateMapper;
 import org.tctalent.anonymization.model.Candidate;
 import org.tctalent.anonymization.model.CandidatePage;
-import org.tctalent.anonymization.repository.CandidateRepository;
+import org.tctalent.anonymization.repository.CandidateMongoRepository;
 
 @Service
 @RequiredArgsConstructor
 public class CandidateServiceImpl implements CandidateService {
 
-  private final CandidateRepository candidateRepository;
+  private final CandidateMongoRepository candidateMongoRepository;
   private final CandidateMapper candidateMapper;
 
   @Override
   public CandidatePage findAll(Pageable pageable) {
-    Page<Candidate> candidatePage =  candidateRepository
+    Page<Candidate> candidatePage =  candidateMongoRepository
         .findAll(pageable)
         .map(candidateMapper::toModel);
 
@@ -28,7 +28,7 @@ public class CandidateServiceImpl implements CandidateService {
 
   @Override
   public Candidate findById(UUID id) {
-    return candidateRepository
+    return candidateMongoRepository
         .findById(id)
         .map(candidateMapper::toModel)
         .orElseThrow(() -> new RuntimeException("Candidate not found")); // todo better exceptions

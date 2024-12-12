@@ -19,9 +19,9 @@ package org.tctalent.anonymization.request.helplink;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.tctalent.anonymization.entity.db.CandidateOpportunityStage;
-import org.tctalent.anonymization.entity.db.HelpFocus;
-import org.tctalent.anonymization.entity.db.JobOpportunityStage;
+import org.tctalent.anonymization.entity.common.enums.CandidateOpportunityStage;
+import org.tctalent.anonymization.entity.common.enums.HelpFocus;
+import org.tctalent.anonymization.entity.common.enums.JobOpportunityStage;
 import org.tctalent.anonymization.entity.db.NextStepInfo;
 
 @Getter

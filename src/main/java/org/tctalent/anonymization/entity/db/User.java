@@ -34,6 +34,8 @@ import java.time.OffsetDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
+import org.tctalent.anonymization.entity.common.enums.Role;
+import org.tctalent.anonymization.entity.common.enums.Status;
 
 @Entity
 @Table(name = "users")

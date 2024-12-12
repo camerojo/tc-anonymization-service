@@ -19,7 +19,7 @@ package org.tctalent.anonymization.request.partner;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.lang.Nullable;
-import org.tctalent.anonymization.entity.db.Status;
+import org.tctalent.anonymization.entity.common.enums.Status;
 import org.tctalent.anonymization.request.PagedSearchRequest;
 
 @Getter

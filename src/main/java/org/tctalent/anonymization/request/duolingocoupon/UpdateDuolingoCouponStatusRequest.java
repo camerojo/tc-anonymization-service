@@ -19,7 +19,7 @@ package org.tctalent.anonymization.request.duolingocoupon;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
-import org.tctalent.anonymization.entity.db.DuolingoCouponStatus;
+import org.tctalent.anonymization.entity.common.enums.DuolingoCouponStatus;
 
 /**
  * Represents a request to update the status of a Duolingo coupon.

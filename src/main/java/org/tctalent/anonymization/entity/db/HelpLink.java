@@ -29,6 +29,9 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
+import org.tctalent.anonymization.entity.common.enums.CandidateOpportunityStage;
+import org.tctalent.anonymization.entity.common.enums.HelpFocus;
+import org.tctalent.anonymization.entity.common.enums.JobOpportunityStage;
 
 @Getter
 @Setter

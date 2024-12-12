@@ -42,12 +42,11 @@ dependencies {
     // Spring Boot starters
     implementation "org.springframework.boot:spring-boot-starter-web"
     implementation "org.springframework.boot:spring-boot-starter-data-jpa"
-
-    // In-memory database for prototyping
-    runtimeOnly "com.h2database:h2" // Todo - In-memory database - just for prototyping
+    implementation "org.springframework.boot:spring-boot-starter-data-mongodb"
+    implementation "org.springframework.boot:spring-boot-starter-batch"
 
     // PostgresSQL driver
-    implementation "org.postgresql:postgresql"
+    runtimeOnly "org.postgresql:postgresql"
 
     // Lombok
     compileOnly "org.projectlombok:lombok"

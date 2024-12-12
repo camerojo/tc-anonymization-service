@@ -36,6 +36,7 @@ import java.util.Set;
 import org.springframework.lang.Nullable;
 import lombok.Getter;
 import lombok.Setter;
+import org.tctalent.anonymization.entity.common.enums.JobOpportunityStage;
 
 /**
  * This represents an Employer Job Opportunity.
@@ -143,10 +144,12 @@ public class SalesforceJobOpp extends AbstractOpportunity {
      */
     private String jobSummary;
 
-    /**
-     * Name of opportunity - maps to Opportunity name on Salesforce
-     */
-    private String name;
+//    sm - mapper compilation fails to document clashes with field with same name in AbstractSalesforceObject
+//    fine to comment out as we will remove all these db entities eventually
+//    /**
+//     * Name of opportunity - maps to Opportunity name on Salesforce
+//     */
+//    private String name;
 
     /**
      * Salesforce id of owner of opportunity

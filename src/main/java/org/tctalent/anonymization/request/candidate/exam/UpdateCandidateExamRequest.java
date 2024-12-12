@@ -17,7 +17,7 @@ package org.tctalent.anonymization.request.candidate.exam;/*
 
 import lombok.Getter;
 import lombok.Setter;
-import org.tctalent.anonymization.entity.db.Exam;
+import org.tctalent.anonymization.entity.common.enums.Exam;
 
 @Getter
 @Setter

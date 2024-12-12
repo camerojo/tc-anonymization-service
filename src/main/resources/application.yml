@@ -1,3 +1,11 @@
+server:
+  port:
+    8082
+
+batch:
+  chunk-size: 100
+  page-size: 100
+
 spring:
   application:
     name: tc-anonymization-service
@@ -26,15 +34,18 @@ spring:
       minimum-idle: 10
       max-lifetime: 1800000 # 30 minutes
 
-# H2 - for prototyping
-#  datasource:
-#    url: jdbc:h2:mem:testdb
-#    driver-class-name: org.h2.Driver
-#    username: sa
-#    password:
-#  jpa:
-#    database-platform: org.hibernate.dialect.H2Dialect
+  # Mongo
+  data:
+    mongodb:
+      uri: mongodb://tctalent:tctalent@localhost:27017/tctalent?authSource=admin
 
+  # Batch
+  # todo sm not for prod as it creates tables on startup - will create via a flyways instead
+  batch:
+    jdbc:
+      initialize-schema: always # see todo above
+    job:
+      enabled: false # disables auto-run of jobs
 
 # for prototyping with TC entities
 jwt:

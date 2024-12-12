@@ -36,6 +36,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
+import org.tctalent.anonymization.entity.common.enums.JobOpportunityStage;
 //import org.tctalent.server.service.db.CandidateSavedListService;
 
 /**

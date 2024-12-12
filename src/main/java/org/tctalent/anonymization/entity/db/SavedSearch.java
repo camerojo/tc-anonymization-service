@@ -36,6 +36,10 @@ import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
+import org.tctalent.anonymization.entity.common.enums.Gender;
+import org.tctalent.anonymization.entity.common.enums.SavedSearchSubtype;
+import org.tctalent.anonymization.entity.common.enums.SavedSearchType;
+import org.tctalent.anonymization.entity.common.enums.SearchType;
 import org.tctalent.anonymization.logging.LogBuilder;
 
 @Entity

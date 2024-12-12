@@ -25,7 +25,7 @@ import org.springframework.lang.Nullable;
 //import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.tctalent.anonymization.entity.db.Candidate;
-import org.tctalent.anonymization.entity.db.Role;
+import org.tctalent.anonymization.entity.common.enums.Role;
 import org.tctalent.anonymization.entity.db.User;
 
 @Service

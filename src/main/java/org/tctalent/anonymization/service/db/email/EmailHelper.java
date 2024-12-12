@@ -27,7 +27,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.tctalent.anonymization.exception.EmailSendFailedException;
 import org.tctalent.anonymization.logging.LogBuilder;
-import org.tctalent.anonymization.entity.db.Role;
+import org.tctalent.anonymization.entity.common.enums.Role;
 import org.tctalent.anonymization.entity.db.User;
 import org.tctalent.anonymization.entity.db.partner.Partner;
 import org.thymeleaf.TemplateEngine;

@@ -20,7 +20,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.Getter;
 import lombok.Setter;
-import org.tctalent.anonymization.entity.db.AttachmentType;
+import org.tctalent.anonymization.entity.common.enums.AttachmentType;
 import org.tctalent.anonymization.entity.db.task.UploadType;
 
 @Getter

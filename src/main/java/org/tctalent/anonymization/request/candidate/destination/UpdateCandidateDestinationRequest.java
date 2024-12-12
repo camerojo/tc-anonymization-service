@@ -20,7 +20,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.lang.Nullable;
-import org.tctalent.anonymization.entity.db.YesNoUnsure;
+import org.tctalent.anonymization.entity.common.enums.YesNoUnsure;
 
 /**
  * Required fields for updating a candidate destination

@@ -19,8 +19,8 @@ package org.tctalent.anonymization.request.search;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.tctalent.anonymization.entity.db.SavedSearchSubtype;
-import org.tctalent.anonymization.entity.db.SavedSearchType;
+import org.tctalent.anonymization.entity.common.enums.SavedSearchSubtype;
+import org.tctalent.anonymization.entity.common.enums.SavedSearchType;
 import org.tctalent.anonymization.request.candidate.source.SearchCandidateSourceRequestPaged;
 
 @Getter
