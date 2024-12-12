@@ -5,6 +5,7 @@ import org.mapstruct.Mapping;
 import org.springframework.data.domain.Page;
 import org.tctalent.anonymization.model.Candidate;
 import org.tctalent.anonymization.model.CandidatePage;
+import org.tctalent.anonymization.model.IdentifiableCandidate;
 import org.tctalent.anonymization.entity.mongo.CandidateDocument;
 
 @Mapper(uses = {
@@ -13,14 +14,16 @@ import org.tctalent.anonymization.entity.mongo.CandidateDocument;
 })
 public interface CandidateMapper {
 
-  @Mapping(source = "id", target = "id")
-  Candidate toModel(org.tctalent.anonymization.entity.db.Candidate entity);
+  // Mongo to Open API:
+  Candidate toCandidateModel(CandidateDocument document);
+  CandidatePage toCandidateModelPage(Page<Candidate> page);
 
-  Candidate toModel(CandidateDocument document);
-
-  CandidatePage toCandidatePage(Page<Candidate> page);
-
-  @Mapping(source = "id", target = "id")
+  // TC entity to Mongo
+  @Mapping(source = "id", target = "uuid") // todo sm this mocks a uuid based on the id - remove it when uuid's are sent from tc
   @Mapping(source = "createdDate", target = "createdDate")
-  CandidateDocument toDocument(org.tctalent.anonymization.entity.db.Candidate entity);
+  CandidateDocument anonymize(org.tctalent.anonymization.entity.db.Candidate entity);
+
+  // TC api to Mongo
+  @Mapping(source = "id", target = "uuid") // todo sm this mocks a uuid based on the id - remove it when uuid's are sent from tc
+  CandidateDocument anonymize(IdentifiableCandidate identifiableCandidate);
 }

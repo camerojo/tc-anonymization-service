@@ -26,7 +26,7 @@ public class CandidateItemProcessor implements
 
   @Override
   public CandidateDocument process(@NonNull final Candidate entity) {
-    return candidateMapper.toDocument(entity);
+    return candidateMapper.anonymize(entity);
   }
 
 }

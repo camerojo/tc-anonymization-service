@@ -21,16 +21,16 @@ public class CandidateServiceImpl implements CandidateService {
   public CandidatePage findAll(Pageable pageable) {
     Page<Candidate> candidatePage =  candidateMongoRepository
         .findAll(pageable)
-        .map(candidateMapper::toModel);
+        .map(candidateMapper::toCandidateModel);
 
-    return candidateMapper.toCandidatePage(candidatePage);
+    return candidateMapper.toCandidateModelPage(candidatePage);
   }
 
   @Override
   public Candidate findById(UUID id) {
     return candidateMongoRepository
-        .findById(id)
-        .map(candidateMapper::toModel)
+        .findByUuid(id)
+        .map(candidateMapper::toCandidateModel)
         .orElseThrow(() -> new RuntimeException("Candidate not found")); // todo better exceptions
   }
 

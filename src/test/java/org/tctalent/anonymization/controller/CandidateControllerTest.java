@@ -57,10 +57,10 @@ class CandidateControllerTest {
   @Transactional
   @DisplayName("Get candidate by Id")
   void testGetCandidateById() throws Exception {
-    mockMvc.perform(get(CandidateController.BASE_URL + "/{candidateId}", testCandidate.getId())
+    mockMvc.perform(get(CandidateController.BASE_URL + "/{candidateId}", testCandidate.getUuid())
             .accept(MediaType.APPLICATION_JSON))
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$.id").value(testCandidate.getId().toString()));
+        .andExpect(jsonPath("$.id").value(testCandidate.getUuid().toString()));
   }
 
 }

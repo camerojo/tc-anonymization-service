@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import java.util.List;
 import java.util.concurrent.ScheduledFuture;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,8 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestClientException;
+import org.tctalent.anonymization.entity.mongo.CandidateDocument;
+import org.tctalent.anonymization.mapper.CandidateMapper;
+import org.tctalent.anonymization.model.Candidate;
+import org.tctalent.anonymization.model.CandidatePage;
 import org.tctalent.anonymization.model.IdentifiableCandidate;
+import org.tctalent.anonymization.model.IdentifiableCandidatePage;
 import org.tctalent.anonymization.repository.CandidateMongoRepository;
 import org.tctalent.util.background.BackProcessor;
 import org.tctalent.util.background.BackRunner;
@@ -30,6 +37,9 @@ class TalentCatalogServiceImplTest {
 
   @Autowired
   CandidateMongoRepository anonCandidateRepository;
+
+  @Autowired
+  CandidateMapper candidateMapper;
 
   @BeforeEach
   void setUp() {
@@ -56,33 +66,36 @@ class TalentCatalogServiceImplTest {
   }
 
   @Test
-  void loginAndFetchPageOfCandidateDataAsJson() {
-//    try {
-//      tcService.login();
-//      assertTrue(tcService.isLoggedIn());
-//
-//      String pageOfDataAsJson = tcService.fetchPageOfCandidateDataAsJson(0);
-//      assertNotNull(pageOfDataAsJson);
-//
-//      Page<AnonCandidate>
-//          anonCandidates = anonymizationService.anonymizePage(pageOfDataAsJson);
-//      assertNotNull(anonCandidates);
-//      String collect = anonCandidates.stream()
-//          .map(ca -> Long.toString(ca.getCandidateNumber()))
-//          .collect(Collectors.joining(","));
-//      System.out.println("Received numbers: " + collect);
-//
-//      anonCandidateRepository.saveAll(anonCandidates);
-//      for (AnonCandidate customer : anonCandidateRepository.findAll()) {
-//        System.out.println(customer);
-//      }
-//
-//
-//    } catch (RestClientException ex) {
-//      fail(ex);
-//    } catch (JsonProcessingException e) {
-//      throw new RuntimeException(e);
-//    }
+  @Transactional
+  void loginAndFetchPageOfCandidateData() {
+    try {
+      tcService.login();
+      assertTrue(tcService.isLoggedIn());
+
+      IdentifiableCandidatePage pageOfIdentifiableCandidates = tcService.fetchPageOfIdentifiableCandidateData(0);
+      assertNotNull(pageOfIdentifiableCandidates);
+
+      List<CandidateDocument> anonCandidates = pageOfIdentifiableCandidates
+          .getContent()
+          .stream()
+          .map(candidateMapper::anonymize)
+          .toList();
+
+      assertNotNull(anonCandidates);
+      String collect = anonCandidates
+          .stream()
+          .map(ca -> ca.getUuid().toString())
+          .collect(Collectors.joining(","));
+      System.out.println("Received numbers: " + collect);
+
+      anonCandidateRepository.saveAll(anonCandidates);
+      for (CandidateDocument candidate : anonCandidateRepository.findAll()) {
+        System.out.println(candidate);
+      }
+
+    } catch (RestClientException ex) {
+      fail(ex);
+    }
   }
 
   @Test
