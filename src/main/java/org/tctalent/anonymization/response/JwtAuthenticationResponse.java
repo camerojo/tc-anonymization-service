@@ -16,6 +16,8 @@
 
 package org.tctalent.anonymization.response;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.tctalent.anonymization.entity.db.User;
@@ -28,7 +30,11 @@ public class JwtAuthenticationResponse {
     private String accessToken;
     private String tokenType = "Bearer";
 
-    public JwtAuthenticationResponse(String accessToken, User user) {
+    @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
+    public JwtAuthenticationResponse(
+        @JsonProperty("accessToken") String accessToken,
+        @JsonProperty("user") User user) {
+
         this.accessToken = accessToken;
         this.user = user;
     }
