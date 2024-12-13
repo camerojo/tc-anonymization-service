@@ -25,6 +25,7 @@ import org.tctalent.anonymization.service.TalentCatalogService;
 @Qualifier("restApiItemReader")
 public class RestApiItemReader implements ItemReader<IdentifiableCandidate> {
 
+  private final BatchProperties batchProperties;
   private final TalentCatalogService talentCatalogService;
 
   private int currentPage = 0;
@@ -35,6 +36,7 @@ public class RestApiItemReader implements ItemReader<IdentifiableCandidate> {
   private long lastFetchTime = 0;
 
   public RestApiItemReader(TalentCatalogService talentCatalogService, BatchProperties batchProperties) {
+    this.batchProperties = batchProperties;
     this.talentCatalogService = talentCatalogService;
     this.fetchDelayMillis = batchProperties.getFetchDelayMillis();
   }
@@ -61,7 +63,8 @@ public class RestApiItemReader implements ItemReader<IdentifiableCandidate> {
       applyRateLimiting();
 
       // Fetch next batch
-      IdentifiableCandidatePage page = talentCatalogService.fetchPageOfIdentifiableCandidateData(currentPage);
+      IdentifiableCandidatePage page = talentCatalogService
+          .fetchPageOfIdentifiableCandidateData(currentPage, batchProperties.getPageSize());
 
       if (page == null || page.getContent() == null) {
         throw new RestApiReaderException("Received null or invalid response from the REST API");

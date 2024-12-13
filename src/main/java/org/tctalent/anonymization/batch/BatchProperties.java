@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
  *  batch:
  *    chunk-size: 100
  *    page-size: 100
+ *    max-read-skips: 3
+ *    fetch-delay-millis: 1000
  * </pre>
  *
  * @author sadatmalik

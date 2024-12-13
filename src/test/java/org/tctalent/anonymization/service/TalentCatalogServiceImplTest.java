@@ -59,7 +59,8 @@ class TalentCatalogServiceImplTest {
       tcService.login();
       assertTrue(tcService.isLoggedIn());
 
-      IdentifiableCandidatePage pageOfIdentifiableCandidates = tcService.fetchPageOfIdentifiableCandidateData(0);
+      IdentifiableCandidatePage pageOfIdentifiableCandidates = tcService
+          .fetchPageOfIdentifiableCandidateData(0, 100);
       assertNotNull(pageOfIdentifiableCandidates);
 
       List<CandidateDocument> anonCandidates = pageOfIdentifiableCandidates
@@ -93,7 +94,8 @@ class TalentCatalogServiceImplTest {
       assertTrue(tcService.isLoggedIn());
 
       for (int i = 0; i < 10; i++) {
-        IdentifiableCandidatePage pageOfIdentifiableCandidates = tcService.fetchPageOfIdentifiableCandidateData(i);
+        IdentifiableCandidatePage pageOfIdentifiableCandidates = tcService
+            .fetchPageOfIdentifiableCandidateData(i, 100);
         assertNotNull(pageOfIdentifiableCandidates);
 
         List<CandidateDocument> anonCandidates = pageOfIdentifiableCandidates

@@ -33,12 +33,13 @@ public interface TalentCatalogService {
   String fetchPageOfCandidateDataAsJson(int pageNumber) throws RestClientException;
 
   /**
-   * Returns the given page number of identifiable candidate data.
+   * Returns the given page number and page size of identifiable candidate data.
    * <p/>
    * Uses a default TC search request.
    * @param pageNumber Page number
-   * @return CandidatePage Page of candidates
+   * @param pageSize Page size
+   * @return IdentifiableCandidatePage Page of candidates
    * @throws RestClientException if errors are returned (eg unauthorized)
    */
-  IdentifiableCandidatePage fetchPageOfIdentifiableCandidateData(int pageNumber) throws RestClientException;
+  IdentifiableCandidatePage fetchPageOfIdentifiableCandidateData(int pageNumber, int pageSize) throws RestClientException;
 }

@@ -2,8 +2,16 @@ server:
   port: ${SERVER_PORT:8082}
 
 batch:
-  chunk-size: 100
-  page-size: 100
+  chunk-size: ${BATCH_CHUNK_SIZE:100}
+  page-size: ${BATCH_PAGE_SIZE:100}
+  max-read-skips: ${BATCH_MAX_READ_SKIPS:10}
+  fetch-delay-millis: ${BATCH_FETCH_DELAY_MILLIS:1000}
+
+tc-service:
+  apiUrl: ${TC_API_URL:http://localhost:8080/api/admin}
+  search-id: ${TC_SEARCH_ID:4672}
+  username: ${TC_USERNAME:appAnonDatabaseService}
+  password: ${TC_PASSWORD:12345678} # todo - sm - just a dummy value for local testing
 
 spring:
   application:
@@ -44,7 +52,7 @@ spring:
     jdbc:
       initialize-schema: always # see todo above
     job:
-      enabled: false # disables auto-run of jobs
+      enabled: true # disables auto-run of jobs
 
 # for prototyping with TC entities
 jwt:
@@ -73,3 +81,4 @@ web:
   # This is used in EmailHelper
   # and SiteRedirectController to redirect urls from the Version 1 TC to the Version 2 TC
   admin: https://tctalent.org/admin-portal
+

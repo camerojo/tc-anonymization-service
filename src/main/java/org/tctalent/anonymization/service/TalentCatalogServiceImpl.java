@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
+import org.tctalent.anonymization.config.properties.TalentCatalogServiceProperties;
 import org.tctalent.anonymization.model.IdentifiableCandidatePage;
 import org.tctalent.anonymization.request.LoginRequest;
 import org.tctalent.anonymization.request.candidate.SavedSearchGetRequest;
@@ -18,21 +19,24 @@ import org.tctalent.anonymization.response.JwtAuthenticationResponse;
  */
 @Service
 public class TalentCatalogServiceImpl implements TalentCatalogService {
+  private final TalentCatalogServiceProperties properties;
   private JwtAuthenticationResponse credentials;
 
   private final RestClient restClient;
-  private long savedSearchId = 4672; //TODO JC Config - need to pass in real Search id
-  private String apiUrl = "http://localhost:8080/api/admin"; //TODO config
+  private final long savedSearchId;
 
-  public TalentCatalogServiceImpl(RestClient.Builder restClientBuilder) {
-    this.restClient = restClientBuilder.baseUrl(apiUrl).build();
+  public TalentCatalogServiceImpl(RestClient.Builder restClientBuilder,
+      TalentCatalogServiceProperties properties) {
+    this.properties = properties;
+    this.restClient = restClientBuilder.baseUrl(properties.getApiUrl()).build();
+    this.savedSearchId = properties.getSearchId();
   }
 
   @Override
   public void login() throws RestClientException {
     LoginRequest request = new LoginRequest();
-    request.setUsername("appAnonDatabaseService"); // todo sm config
-    request.setPassword("12345678"); // todo sm config environment variable
+    request.setUsername(properties.getUsername());
+    request.setPassword(properties.getPassword());
 
     credentials = restClient.post()
         .uri("/auth/login")
@@ -66,10 +70,11 @@ public class TalentCatalogServiceImpl implements TalentCatalogService {
   }
 
   @Override
-  public IdentifiableCandidatePage fetchPageOfIdentifiableCandidateData(int pageNumber) throws RestClientException {
+  public IdentifiableCandidatePage fetchPageOfIdentifiableCandidateData(int pageNumber, int pageSize)
+      throws RestClientException {
     try {
       SavedSearchGetRequest request = new SavedSearchGetRequest();
-      request.setPageSize(100); // todo - sm - parameterise
+      request.setPageSize(pageSize);
       request.setPageNumber(pageNumber);
       return restClient.post()
           .uri("/saved-search-candidate/" + savedSearchId + "/search-paged")
