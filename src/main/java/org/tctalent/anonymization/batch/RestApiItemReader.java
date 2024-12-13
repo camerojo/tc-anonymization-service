@@ -3,6 +3,7 @@ package org.tctalent.anonymization.batch;
 import java.util.Iterator;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -14,9 +15,12 @@ import org.tctalent.anonymization.service.TalentCatalogService;
 /**
  * An {@link ItemReader} implementation that reads data from the {@link TalentCatalogService},
  * fetching paginated batches of {@link IdentifiableCandidate} objects.
+ * </p>
+ * Rate limiting is applied to avoid hitting the API too frequently.
  *
  * @author sadatmalik
  */
+@Slf4j
 @Component
 @RequiredArgsConstructor
 @Qualifier("restApiItemReader")
@@ -27,6 +31,9 @@ public class RestApiItemReader implements ItemReader<IdentifiableCandidate> {
   private int currentPage = 0;
   private int totalPages = 1; // Initialise with 1 to start fetching
   private Iterator<IdentifiableCandidate> batchIterator;
+
+  private final long fetchDelayMillis = 1000; // 1 second delay todo - sm - make configurable
+  private long lastFetchTime = 0;
 
   @Override
   public IdentifiableCandidate read() throws RestApiReaderException {
@@ -47,6 +54,9 @@ public class RestApiItemReader implements ItemReader<IdentifiableCandidate> {
       talentCatalogService.login();
     }
     if (currentPage < totalPages) {
+      applyRateLimiting();
+
+      // Fetch next batch
       IdentifiableCandidatePage page = talentCatalogService.fetchPageOfIdentifiableCandidateData(currentPage);
 
       if (page == null || page.getContent() == null) {
@@ -57,6 +67,25 @@ public class RestApiItemReader implements ItemReader<IdentifiableCandidate> {
       totalPages = page.getTotalPages();
       batchIterator = currentBatch.iterator();
       currentPage++;
+
+      lastFetchTime = System.currentTimeMillis(); // Update fetch timestamp
+    }
+  }
+
+  private void applyRateLimiting() {
+    long now = System.currentTimeMillis();
+    long timeSinceLastFetch = now - lastFetchTime;
+
+    if (timeSinceLastFetch < fetchDelayMillis) {
+      long remainingDelay = fetchDelayMillis - timeSinceLastFetch;
+
+      try {
+        log.debug("Sleeping for {} ms to avoid hitting the API too frequently", remainingDelay);
+        Thread.sleep(remainingDelay); // Sleep remaining time
+      } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+        throw new RestApiReaderException("Fetch was interrupted during rate limiting", e);
+      }
     }
   }
 }
