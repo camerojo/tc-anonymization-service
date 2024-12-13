@@ -91,7 +91,7 @@ public class BatchConfig {
       LoggingItemProcessListener loggingItemProcessListener,
       LoggingItemWriterListener loggingItemWriterListener) {
 
-    return new StepBuilder("candidateMigrationStep", jobRepository)
+    return new StepBuilder("candidateJpaMigrationStep", jobRepository)
         .<Candidate, CandidateDocument>chunk(batchProperties.getChunkSize(), transactionManager)
         .reader(jpaItemReader)
         .processor(itemProcessor)
@@ -133,7 +133,7 @@ public class BatchConfig {
       LoggingItemProcessListener loggingItemProcessListener,
       LoggingItemWriterListener loggingItemWriterListener) {
 
-    return new StepBuilder("candidateMigrationStep", jobRepository)
+    return new StepBuilder("candidateRestMigrationStep", jobRepository)
         .<IdentifiableCandidate, CandidateDocument>chunk(batchProperties.getChunkSize(), transactionManager)
         .reader(tcItemReader)
         .processor(itemProcessor)

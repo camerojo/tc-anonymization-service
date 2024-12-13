@@ -38,7 +38,7 @@ public class ConditionalSkipPolicy implements SkipPolicy {
     // For RestApiReaderException, count skips and fail if limit exceeded
     int currentCount = restApiReaderExceptionCount.incrementAndGet();
 
-    if (currentCount >= maxRestApiReaderSkips) {
+    if (currentCount > maxRestApiReaderSkips) {
       LogBuilder.builder(log)
           .action("Skip policy")
           .message("Max skip limit for RestApiReaderException reached: " +  currentCount + " skips")
