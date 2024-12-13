@@ -14,16 +14,40 @@ import org.tctalent.anonymization.entity.mongo.CandidateDocument;
 })
 public interface CandidateMapper {
 
-  // Mongo to Open API:
+  /**
+   * Maps a Mongo {@link CandidateDocument} to an Open API {@link Candidate} model.
+   *
+   * @param document the mongo candidate document
+   * @return the corresponding open api model
+   */
   Candidate toCandidateModel(CandidateDocument document);
+
+  /**
+   * Maps a Page of {@link Candidate} models to an Open API {@link CandidatePage} model.
+   *
+   * @param page the page of candidates
+   * @return the corresponding open api model
+   */
   CandidatePage toCandidateModelPage(Page<Candidate> page);
 
-  // TC entity to Mongo
+  /**
+   * Maps a TC database {@link org.tctalent.anonymization.entity.db.Candidate} entity to an
+   * anonymised Mongo {@link CandidateDocument}.
+   *
+   * @param entity the database candidate entity
+   * @return the corresponding anonymised mongo document
+   */
   @Mapping(source = "id", target = "uuid") // todo sm this mocks a uuid based on the id - remove it when uuid's are sent from tc
   @Mapping(source = "createdDate", target = "createdDate")
   CandidateDocument anonymize(org.tctalent.anonymization.entity.db.Candidate entity);
 
-  // TC api to Mongo
+  /**
+   * Maps from an {@link IdentifiableCandidate} model to an anonymised Mongo
+   * {@link CandidateDocument}.
+   *
+   * @param model the identifiable candidate model
+   * @return the corresponding anonymised mongo document
+   */
   @Mapping(source = "id", target = "uuid") // todo sm this mocks a uuid based on the id - remove it when uuid's are sent from tc
-  CandidateDocument anonymize(IdentifiableCandidate identifiableCandidate);
+  CandidateDocument anonymize(IdentifiableCandidate model);
 }

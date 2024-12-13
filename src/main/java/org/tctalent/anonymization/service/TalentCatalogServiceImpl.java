@@ -69,7 +69,7 @@ public class TalentCatalogServiceImpl implements TalentCatalogService {
   public IdentifiableCandidatePage fetchPageOfIdentifiableCandidateData(int pageNumber) throws RestClientException {
     try {
       SavedSearchGetRequest request = new SavedSearchGetRequest();
-      request.setPageSize(100);
+      request.setPageSize(100); // todo - sm - parameterise
       request.setPageNumber(pageNumber);
       return restClient.post()
           .uri("/saved-search-candidate/" + savedSearchId + "/search-paged")
