@@ -24,4 +24,6 @@ import org.springframework.stereotype.Component;
 public class BatchProperties {
   private int chunkSize;
   private int pageSize;
+  private int maxReadSkips;
+  private int fetchDelayMillis;
 }

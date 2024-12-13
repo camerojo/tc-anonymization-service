@@ -22,7 +22,6 @@ import org.tctalent.anonymization.service.TalentCatalogService;
  */
 @Slf4j
 @Component
-@RequiredArgsConstructor
 @Qualifier("restApiItemReader")
 public class RestApiItemReader implements ItemReader<IdentifiableCandidate> {
 
@@ -32,8 +31,13 @@ public class RestApiItemReader implements ItemReader<IdentifiableCandidate> {
   private int totalPages = 1; // Initialise with 1 to start fetching
   private Iterator<IdentifiableCandidate> batchIterator;
 
-  private final long fetchDelayMillis = 1000; // 1 second delay todo - sm - make configurable
+  private final long fetchDelayMillis;
   private long lastFetchTime = 0;
+
+  public RestApiItemReader(TalentCatalogService talentCatalogService, BatchProperties batchProperties) {
+    this.talentCatalogService = talentCatalogService;
+    this.fetchDelayMillis = batchProperties.getFetchDelayMillis();
+  }
 
   @Override
   public IdentifiableCandidate read() throws RestApiReaderException {

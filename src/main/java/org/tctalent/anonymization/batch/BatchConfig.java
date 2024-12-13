@@ -143,7 +143,7 @@ public class BatchConfig {
         .listener(loggingItemProcessListener)
         .listener(loggingItemWriterListener)
         .faultTolerant()
-        .skipPolicy(new ConditionalSkipPolicy(100)) // todo - sm - make configurable
+        .skipPolicy(new ConditionalSkipPolicy(batchProperties.getMaxReadSkips()))
         .build();
   }
 
