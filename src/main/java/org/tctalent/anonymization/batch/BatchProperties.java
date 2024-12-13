@@ -27,5 +27,5 @@ public class BatchProperties {
   private int chunkSize;
   private int pageSize;
   private int maxReadSkips;
-  private int fetchDelayMillis;
+  private long fetchDelayMillis;
 }

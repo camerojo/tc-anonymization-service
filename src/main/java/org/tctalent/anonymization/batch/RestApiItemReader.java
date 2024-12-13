@@ -2,7 +2,6 @@ package org.tctalent.anonymization.batch;
 
 import java.util.Iterator;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.beans.factory.annotation.Qualifier;

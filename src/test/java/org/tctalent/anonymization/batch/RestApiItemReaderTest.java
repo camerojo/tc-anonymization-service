@@ -22,8 +22,8 @@ import org.tctalent.anonymization.service.TalentCatalogService;
  */
 class RestApiItemReaderTest {
 
-  @Mock
-  private TalentCatalogService talentCatalogService;
+  @Mock private TalentCatalogService talentCatalogService;
+  @Mock private BatchProperties batchProperties;
 
   @InjectMocks
   private RestApiItemReader restApiItemReader;
@@ -31,11 +31,13 @@ class RestApiItemReaderTest {
   @BeforeEach
   void setUp() {
     MockitoAnnotations.openMocks(this);
+    when(batchProperties.getFetchDelayMillis()).thenReturn(1000L);
+    when(batchProperties.getPageSize()).thenReturn(100);
   }
 
   @Test
   @DisplayName("Test read")
-  void testRead() throws Exception {
+  void testRead() {
     IdentifiableCandidate candidate1 = new IdentifiableCandidate();
     IdentifiableCandidate candidate2 = new IdentifiableCandidate();
     IdentifiableCandidatePage page = new IdentifiableCandidatePage();
@@ -43,7 +45,7 @@ class RestApiItemReaderTest {
     page.setTotalPages(1);
 
     when(talentCatalogService
-        .fetchPageOfIdentifiableCandidateData(0))
+        .fetchPageOfIdentifiableCandidateData(0, 100))
         .thenReturn(page);
 
     IdentifiableCandidate result1 = restApiItemReader.read();
@@ -57,7 +59,7 @@ class RestApiItemReaderTest {
 
   @Test
   @DisplayName("Test read fetches next batch when batch iterator is null")
-  void testReadFetchesNextBatchWhenBatchIteratorIsNull() throws Exception {
+  void testReadFetchesNextBatchWhenBatchIteratorIsNull() {
     IdentifiableCandidate candidate = new IdentifiableCandidate();
     IdentifiableCandidatePage page = new IdentifiableCandidatePage();
     page.setContent(List.of(candidate));
@@ -68,14 +70,14 @@ class RestApiItemReaderTest {
         .thenReturn(true);
 
     when(talentCatalogService
-        .fetchPageOfIdentifiableCandidateData(0))
+        .fetchPageOfIdentifiableCandidateData(0, 100))
         .thenReturn(page);
 
     IdentifiableCandidate result = restApiItemReader.read();
 
     assertNotNull(result, "The returned candidate should not be null");
     assertEquals(candidate, result, "The returned candidate should match the fetched batch");
-    verify(talentCatalogService).fetchPageOfIdentifiableCandidateData(0);
+    verify(talentCatalogService).fetchPageOfIdentifiableCandidateData(0, 100);
   }
 
   @Test
@@ -101,7 +103,7 @@ class RestApiItemReaderTest {
         .thenReturn(true);
 
     when(talentCatalogService
-        .fetchPageOfIdentifiableCandidateData(0))
+        .fetchPageOfIdentifiableCandidateData(0, 100))
         .thenReturn(null);
 
     assertThrows(
@@ -112,7 +114,7 @@ class RestApiItemReaderTest {
 
   @Test
   @DisplayName("Test read fetches next batch and handles null content in response from API")
-  void testFetchNextBatchHandlesEmptyBatch() throws Exception {
+  void testFetchNextBatchHandlesEmptyBatch() {
     IdentifiableCandidatePage page = new IdentifiableCandidatePage();
     page.setContent(List.of());
     page.setTotalPages(1);
@@ -122,7 +124,7 @@ class RestApiItemReaderTest {
         .thenReturn(true);
 
     when(talentCatalogService
-        .fetchPageOfIdentifiableCandidateData(0))
+        .fetchPageOfIdentifiableCandidateData(0, 100))
         .thenReturn(page);
 
     IdentifiableCandidate result = restApiItemReader.read();
@@ -149,7 +151,7 @@ class RestApiItemReaderTest {
   @DisplayName("Test read with exception")
   void testReadWithException() {
     when(talentCatalogService
-        .fetchPageOfIdentifiableCandidateData(0))
+        .fetchPageOfIdentifiableCandidateData(0, 100))
         .thenThrow(new RestApiReaderException("Error"));
 
     assertThrows(
