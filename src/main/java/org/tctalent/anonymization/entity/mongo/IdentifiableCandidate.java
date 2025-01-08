@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.UUID;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.tctalent.anonymization.entity.common.enums.AvailImmediateReason;
 import org.tctalent.anonymization.entity.common.enums.CandidateStatus;
 import org.tctalent.anonymization.entity.common.enums.DocumentStatus;
 import org.tctalent.anonymization.entity.common.enums.Gender;
@@ -24,16 +24,11 @@ import org.tctalent.anonymization.entity.common.enums.WorkPermit;
 import org.tctalent.anonymization.entity.common.enums.YesNo;
 import org.tctalent.anonymization.entity.common.enums.YesNoUnemployedOther;
 import org.tctalent.anonymization.entity.common.enums.YesNoUnsure;
-import org.tctalent.anonymization.entity.common.enums.AvailImmediateReason;
 
 @Getter
 @Setter
-@Document(collection = "candidates")
-public class CandidateDocument {
-
-  private UUID uuid;
-
-  private String candidateNumber;
+public class IdentifiableCandidate {
+  private String id;
   private String additionalInfo;
 
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -72,8 +67,6 @@ public class CandidateDocument {
 
   @Valid
   private List<@Valid CandidateLanguage> candidateLanguages;
-
-  // todo sm tested up to here - remove this comment after writing unit tests - placeholder
   private String candidateMessage;
 
   @Valid
@@ -83,13 +76,14 @@ public class CandidateDocument {
   private List<@Valid CandidateOccupation> candidateOccupations;
 
   @Valid
-  private List<@Valid ModelList> candidateSavedLists;
+  private List<@Valid Object> candidateSavedLists;
 
   @Valid
   private List<@Valid CandidateSkill> candidateSkills;
 
   @Valid
   private List<@Valid CandidateVisaCheck> candidateVisaChecks;
+
   private YesNo canDrive;
   private String city;
   private YesNo conflict;
@@ -135,7 +129,7 @@ public class CandidateDocument {
   private Float ieltsScore;
 
   @Valid
-  private List<IntRecruitReason> intRecruitReasons;
+  private List<IntRecruitReason> intRecruitReasons ;
   private String intRecruitOther;
   private YesNoUnsure intRecruitRural;
   private String intRecruitRuralNotes;
@@ -157,6 +151,7 @@ public class CandidateDocument {
 
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   private LocalDate militaryEnd;
+
   private String militaryNotes;
   private User miniIntakeCompletedBy;
 
@@ -227,37 +222,51 @@ public class CandidateDocument {
 
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private Instant updatedDate;
+  private String candidateNumber;
 
-  @Override
-  public int hashCode() {
-    if (uuid != null) {
-      return uuid.hashCode();
-    } else {
-      return super.hashCode();
-    }
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) return true;
-
-    if (obj == null || getClass() != obj.getClass()) {
-      return false;
-    }
-    CandidateDocument other = (CandidateDocument) obj;
-
-    //If id is missing assume that it is not equal to other instance.
-    if (uuid == null) return false;
-
-    //Equivalence by id
-    return uuid.equals(other.uuid);
-  }
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+  private LocalDate dob;
+  private String externalId;
+  private String externalIdSource;
+  private String linkedInLink;
+  private String phone;
+  private String address1;
+  private String regoIp;
+  private String regoPartnerParam;
+  private String regoReferrerParam;
+  private String regoUtmCampaign;
+  private String regoUtmContent;
+  private String regoUtmMedium;
+  private String regoUtmSource;
+  private String regoUtmTerm;
+  private User user;
+  private String unhcrFile;
+  private String unhcrNumber;
+  private String unrwaFile;
+  private String unrwaNumber;
+  private String whatsapp;
+  private String textSearchId;
+  private String folderlink;
+  private String folderlinkAddress;
+  private String folderlinkCharacter;
+  private String folderlinkEmployer;
+  private String folderlinkEngagement;
+  private String folderlinkExperience;
+  private String folderlinkFamily;
+  private String folderlinkIdentity;
+  private String folderlinkImmigration;
+  private String folderlinkLanguage;
+  private String folderlinkMedical;
+  private String folderlinkQualification;
+  private String folderlinkRegistration;
+  private String sflink;
+  private String videolink;
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Candidate {\n");
-    sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
+    sb.append("class IdentifiableCandidate {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    additionalInfo: ").append(toIndentedString(additionalInfo)).append("\n");
     sb.append("    asylumYear: ").append(toIndentedString(asylumYear)).append("\n");
     sb.append("    arrestImprison: ").append(toIndentedString(arrestImprison)).append("\n");
@@ -393,6 +402,43 @@ public class CandidateDocument {
     sb.append("    createdDate: ").append(toIndentedString(createdDate)).append("\n");
     sb.append("    updatedBy: ").append(toIndentedString(updatedBy)).append("\n");
     sb.append("    updatedDate: ").append(toIndentedString(updatedDate)).append("\n");
+    sb.append("    candidateNumber: ").append(toIndentedString(candidateNumber)).append("\n");
+    sb.append("    dob: ").append(toIndentedString(dob)).append("\n");
+    sb.append("    externalId: ").append(toIndentedString(externalId)).append("\n");
+    sb.append("    externalIdSource: ").append(toIndentedString(externalIdSource)).append("\n");
+    sb.append("    linkedInLink: ").append(toIndentedString(linkedInLink)).append("\n");
+    sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
+    sb.append("    address1: ").append(toIndentedString(address1)).append("\n");
+    sb.append("    regoIp: ").append(toIndentedString(regoIp)).append("\n");
+    sb.append("    regoPartnerParam: ").append(toIndentedString(regoPartnerParam)).append("\n");
+    sb.append("    regoReferrerParam: ").append(toIndentedString(regoReferrerParam)).append("\n");
+    sb.append("    regoUtmCampaign: ").append(toIndentedString(regoUtmCampaign)).append("\n");
+    sb.append("    regoUtmContent: ").append(toIndentedString(regoUtmContent)).append("\n");
+    sb.append("    regoUtmMedium: ").append(toIndentedString(regoUtmMedium)).append("\n");
+    sb.append("    regoUtmSource: ").append(toIndentedString(regoUtmSource)).append("\n");
+    sb.append("    regoUtmTerm: ").append(toIndentedString(regoUtmTerm)).append("\n");
+    sb.append("    user: ").append(toIndentedString(user)).append("\n");
+    sb.append("    unhcrFile: ").append(toIndentedString(unhcrFile)).append("\n");
+    sb.append("    unhcrNumber: ").append(toIndentedString(unhcrNumber)).append("\n");
+    sb.append("    unrwaFile: ").append(toIndentedString(unrwaFile)).append("\n");
+    sb.append("    unrwaNumber: ").append(toIndentedString(unrwaNumber)).append("\n");
+    sb.append("    whatsapp: ").append(toIndentedString(whatsapp)).append("\n");
+    sb.append("    textSearchId: ").append(toIndentedString(textSearchId)).append("\n");
+    sb.append("    folderlink: ").append(toIndentedString(folderlink)).append("\n");
+    sb.append("    folderlinkAddress: ").append(toIndentedString(folderlinkAddress)).append("\n");
+    sb.append("    folderlinkCharacter: ").append(toIndentedString(folderlinkCharacter)).append("\n");
+    sb.append("    folderlinkEmployer: ").append(toIndentedString(folderlinkEmployer)).append("\n");
+    sb.append("    folderlinkEngagement: ").append(toIndentedString(folderlinkEngagement)).append("\n");
+    sb.append("    folderlinkExperience: ").append(toIndentedString(folderlinkExperience)).append("\n");
+    sb.append("    folderlinkFamily: ").append(toIndentedString(folderlinkFamily)).append("\n");
+    sb.append("    folderlinkIdentity: ").append(toIndentedString(folderlinkIdentity)).append("\n");
+    sb.append("    folderlinkImmigration: ").append(toIndentedString(folderlinkImmigration)).append("\n");
+    sb.append("    folderlinkLanguage: ").append(toIndentedString(folderlinkLanguage)).append("\n");
+    sb.append("    folderlinkMedical: ").append(toIndentedString(folderlinkMedical)).append("\n");
+    sb.append("    folderlinkQualification: ").append(toIndentedString(folderlinkQualification)).append("\n");
+    sb.append("    folderlinkRegistration: ").append(toIndentedString(folderlinkRegistration)).append("\n");
+    sb.append("    sflink: ").append(toIndentedString(sflink)).append("\n");
+    sb.append("    videolink: ").append(toIndentedString(videolink)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -407,6 +453,5 @@ public class CandidateDocument {
     }
     return o.toString().replace("\n", "\n    ");
   }
-
 }
 

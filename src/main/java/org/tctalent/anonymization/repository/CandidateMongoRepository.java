@@ -8,5 +8,5 @@ import org.tctalent.anonymization.entity.mongo.CandidateDocument;
 
 @Repository
 public interface CandidateMongoRepository extends MongoRepository<CandidateDocument, String> {
-  Optional<CandidateDocument> findById(UUID id);
+  Optional<CandidateDocument> findByUuid(UUID uuid);
 }

@@ -37,6 +37,7 @@ class AnonymizationServiceImplTest {
     void anonymize() throws JsonProcessingException {
 
         UUID uuid = UUID.randomUUID();
+        String id = "123456";
 
         User user = User.builder()
             .firstName("John")
@@ -51,7 +52,8 @@ class AnonymizationServiceImplTest {
             .build();
 
         IdentifiableCandidate identifiableCandidate = IdentifiableCandidate.builder()
-            .id(uuid)
+            .id(id)
+            .uuid(uuid)
             .user(user)
             .phone("+1-234-567-890")
             .address1("123 Main St, Springfield, IL")
@@ -62,7 +64,7 @@ class AnonymizationServiceImplTest {
 
         Candidate candidate = service.anonymize(identifiableCandidate);
 
-        assertEquals(uuid, candidate.getId());
+        assertEquals(uuid, candidate.getUuid());
         System.out.println(candidate);
     }
 }
